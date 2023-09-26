@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { Component } from '@angular/core';
 import { VentanaLoginComponent } from './ventana-login.component';
 
 describe('VentanaLoginComponent', () => {
@@ -19,3 +19,4 @@ describe('VentanaLoginComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
