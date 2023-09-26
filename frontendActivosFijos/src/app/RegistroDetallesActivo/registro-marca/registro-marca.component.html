@@ -1,1 +1,39 @@
-<p>registro-marca works!</p>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Registro de Marca Nueva</h2>
+      <h4>Datos de Adquisición</h4>
+      <div class="form-group">
+        <label for="nombreMarca">Nombre de la Marca</label>
+        <input type="text" class="form-control" id="nombreMarca" placeholder="Nombre de la Marca">
+      </div>
+      <button class="btn btn-primary">Registrar</button>
+    </div>
+    <div class="col-md-6">
+      <h2>Marcas</h2>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre de la Marca</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Contenido de la tabla de marcas -->
+        </tbody>
+      </table>
+      <div class="form-group">
+        <label for="buscar">Buscar</label>
+        <div class="input-group">
+          <input type="text" class="form-control" id="buscar" placeholder="Buscar">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
