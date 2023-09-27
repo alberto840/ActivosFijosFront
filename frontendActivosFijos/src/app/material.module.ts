@@ -17,6 +17,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 const myModule=[
   MatCardModule,
@@ -36,6 +37,7 @@ const myModule=[
   MatSelectModule,
   MatRadioModule,
   MatExpansionModule,
+  MatGridListModule
 
 ];
 
