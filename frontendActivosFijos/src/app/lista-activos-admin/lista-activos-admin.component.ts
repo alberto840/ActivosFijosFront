@@ -10,6 +10,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {SelectionModel} from '@angular/cdk/collections';
 
 export interface PeriodicElement {
   name: string;
@@ -47,7 +49,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
     MatGridListModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatTableModule
+    MatTableModule,
+    MatCheckboxModule,
   ],
 })
 export class ListaActivosAdminComponent implements OnInit {
@@ -55,6 +58,26 @@ export class ListaActivosAdminComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
+  selection = new SelectionModel<PeriodicElement>(true, []);
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length; 
+    return numSelected === numRows;
+  }
+  togleAllRows(){
+    if(this.isAllSelected()){
+      this.selection.clear();
+      return;
+    }
+    this.selection.select(...this.dataSource.data);
+  }
+  checkboxLabel(row?: PeriodicElement): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
+    } 
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+  }
+  
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase(); 
