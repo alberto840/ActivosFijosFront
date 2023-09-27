@@ -14,15 +14,21 @@
   <table class="table mt-4">
     <thead>
     <tr>
+      <th>id</th>
       <th>Nombre del Usuario</th>
-      <th>Id</th>
       <th>Acción</th>
       <th>Id Activo</th>
       <th>Fecha</th>
     </tr>
     </thead>
     <tbody>
-    <!-- Contenido de la tabla -->
+      <tr *ngFor="let item of registrosActi">
+        <td>{{item.id_actividadesUsers}}</td>
+        <td>{{item.usuario_nombre}}</td>
+        <td>{{item.accion}}</td>
+        <td>{{item.activo_id_activo}}</td>
+        <td>{{item.accion_fecha}}</td>
+      </tr>
     </tbody>
   </table>
 </div>

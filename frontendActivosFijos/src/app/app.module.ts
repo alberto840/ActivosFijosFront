@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ActualizarListaActivosComponent } from './ActualizarActivoLista/actualizar-lista-activos/actualizar-lista-activos.component';
@@ -19,6 +20,7 @@ import { FooterComponent } from './Utilitarios/footer/footer.component';
 import { MenuIzquierdoComponent } from './Utilitarios/menu-izquierdo/menu-izquierdo.component';
 import { VentanaLoginComponent } from './Login/ventana-login/ventana-login.component';
 import { TablaGeneralComponent } from './InicioUsuario/tabla-general/tabla-general.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,9 @@ import { TablaGeneralComponent } from './InicioUsuario/tabla-general/tabla-gener
     TablaGeneralComponent
   ],
   imports: [
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule
   ],
