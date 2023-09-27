@@ -1,1 +1,66 @@
-<p>registro-custodio works!</p>
+<div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Registro de Custodio Nuevo</h2>
+        <form (ngSubmit)="onSubmit()" #custodioForm="">
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre">
+          </div>
+          <div class="mb-3">
+            <label for="apellidoPaterno" class="form-label">Apellido Paterno</label>
+            <input type="text" class="form-control" id="apellidoPaterno" name="apellidoPaterno">
+          </div>
+          <div class="mb-3">
+            <label for="apellidoMaterno" class="form-label">Apellido Materno</label>
+            <input type="text" class="form-control" id="apellidoMaterno" name="apellidoMaterno">
+          </div>
+          <div class="mb-3">
+            <label for="telefono" class="form-label">Telefono</label>
+            <input type="telefono" class="form-control" id="telefono" name="telefono" required>
+          </div>
+          <div class="mb-3">
+            <label for="correo" class="form-label">Correo</label>
+            <input type="email" class="form-control" id="correo" name="correo" required>
+          </div>
+          <div class="mb-3">
+            <label for="estado" class="form-label">Estado</label>
+            <select class="form-select" id="estado" name="estado" required>
+              <option value="activo">Activo</option>
+              <option value="inactivo">Inactivo</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Registrar</button>
+        </form>
+      </div>
+      <div class="col-md-6">
+        <h2>Datos del Custodio</h2>
+        <div class="form-group">
+            <label for="buscar">Buscar</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="buscar" placeholder="Buscar">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button">
+                  <i class="bi bi-search"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Apellido Paterno</th>
+              <th>Apellido Materno</th>
+              <th>Telefono</th>
+              <th>Correo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Aquí puedes agregar filas con datos del custodio si es necesario -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,9 @@
+
+/* Agrega la siguiente línea al archivo styles.css */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+/* Estilo para la imagen mediana */
+.img1 {
+    width: 400px; /* Cambia este valor según el tamaño que desees */
+    height: auto; /* Esto mantiene la relación de aspecto original de la imagen */
+  }
