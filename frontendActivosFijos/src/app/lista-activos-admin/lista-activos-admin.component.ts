@@ -50,18 +50,18 @@ const ELEMENT_DATA: PeriodicElement[] = [
     MatDatepickerModule,
     MatNativeDateModule,
     MatTableModule,
-    MatCheckboxModule,
+    MatCheckboxModule
+
   ],
 })
 export class ListaActivosAdminComponent implements OnInit {
-  
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
 
+  displayedColumns: string[] = ['Select','position', 'name', 'weight', 'symbol'];
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
   selection = new SelectionModel<PeriodicElement>(true, []);
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length; 
+    const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
   togleAllRows(){
@@ -74,16 +74,16 @@ export class ListaActivosAdminComponent implements OnInit {
   checkboxLabel(row?: PeriodicElement): string {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
-    } 
+    }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
   }
-  
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase(); 
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  
-  
+
+
   myControl = new FormControl('');
   options: string[] = ['Dolar Americano $', 'Bolivianos Bs.', 'Euros', 'UFV'];
   filteredOptions: Observable<string[]> | undefined;
