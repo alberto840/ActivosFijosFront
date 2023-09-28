@@ -21,6 +21,8 @@ import { MenuIzquierdoComponent } from './Utilitarios/menu-izquierdo/menu-izquie
 import { VentanaLoginComponent } from './Login/ventana-login/ventana-login.component';
 import { TablaGeneralComponent } from './InicioUsuario/tabla-general/tabla-general.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ListaActivosAdminComponent } from './GestionUsuarios/lista-activos-admin/lista-activos-admin.component';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -40,14 +42,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FooterComponent,
     MenuIzquierdoComponent,
     VentanaLoginComponent,
-    TablaGeneralComponent
+    TablaGeneralComponent,
+    ListaActivosAdminComponent
   ],
   imports: [
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

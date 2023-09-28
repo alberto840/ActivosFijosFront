@@ -1,0 +1,92 @@
+<div class="panel">
+  <h1>UCB ACTIVOS</h1>
+  
+  <h2>TIPO DE MONEDA</h2>
+  <form class="tipoMoneda">
+    <select class="form-select form-select-sm" aria-label="Small select example">
+      <option selected>Seleccione el tipo de moneda</option>
+      <option value="1">Dolar $</option>
+      <option value="2">Bolivianos Bs.</option>
+      <option value="3">Euros</option>
+      <option value="4">UFV</option>
+    </select>
+  </form>
+
+  <div class="input-group">
+    <span class="input-group-text">Valor UFV</span>
+    <span class="input-group-text">UFV</span>
+  <span class="input-group-text">0.00</span>
+  <span class="input-group-text">Mostrar solo: </span>
+  <select class="form-select form-select-sm" aria-label="Small select example">
+    <option selected>Seleccione el tipo</option>
+    <option value="1">Automoviles</option>
+    <option value="2">Mobiliario</option>
+    
+  </select>
+  </div>
+
+  <div class="input-group">
+    <h3>Fecha</h3>
+    <mat-form-field>
+      <mat-label>Ponga la fecha</mat-label>
+      <input matInput [matDatepicker]="dp2">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="dp2" disabled></mat-datepicker-toggle>
+      <mat-datepicker #dp2></mat-datepicker>
+    </mat-form-field>
+    
+  </div>
+
+    <mat-form-field>
+        <mat-label>Buscar</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+      </mat-form-field>
+      
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> Nombre de grupo de activos </th>
+          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Modelo </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+      
+        <!-- Weight Column -->
+        <ng-container matColumnDef="weight">
+          <th mat-header-cell *matHeaderCellDef> ID Activo </th>
+          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        </ng-container>
+      
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="symbol">
+          <th mat-header-cell *matHeaderCellDef> Valor Actual </th>
+          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="categoria">
+            <th mat-header-cell *matHeaderCellDef> Categoría </th>
+            <td mat-cell *matCellDef="let element"> {{element.categoria}} </td>
+          </ng-container>
+
+        <ng-container matColumnDef="custodio">
+            <th mat-header-cell *matHeaderCellDef> Custodío </th>
+            <td mat-cell *matCellDef="let element"> {{element.custodio}} </td>
+          </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+      
+      <button type="button" class="btn btn-primary">Reporte PDF</button>
+      <button type="button" class="btn btn-primary">Actualizar</button>
+</div>

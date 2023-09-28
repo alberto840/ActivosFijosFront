@@ -18,6 +18,9 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 const myModule=[
   MatCardModule,
@@ -37,7 +40,9 @@ const myModule=[
   MatSelectModule,
   MatRadioModule,
   MatExpansionModule,
-  MatGridListModule
+  MatGridListModule,
+  MatDatepickerModule, 
+  MatNativeDateModule,
 
 ];
 
