@@ -1,1 +1,103 @@
-<p>datos-adquisicion works!</p>
+<div class="row">
+    <div class="col-lg-3">
+      <div class="form-container">
+        <h2>Registro de Activo</h2>
+        <form (ngSubmit)="onSubmit()" #registroForm="">
+          <div class="mb-3">
+            <label for="nombreActivo" class="form-label">Nombre del Activo:</label>
+            <input type="text" id="nombreActivo" name="nombreActivo" class="form-control" >
+          </div>
+          <div class="mb-3">
+            <label for="fechaAdquisicion" class="form-label">Fecha de Adquisición:</label>
+            <input type="date" id="fechaAdquisicion" name="fechaAdquisicion" class="form-control" >
+          </div>
+          <div class="mb-3">
+            <label for="categoria" class="form-label">Categoría:</label>
+            <input type="text" id="categoria" name="categoria" class="form-control" >
+          </div>
+          <div class="mb-3">
+            <label for="marca" class="form-label">Marca:</label>
+            <input type="text" id="marca" name="marca" class="form-control" >
+          </div>
+          <div class="mb-3">
+            <label for="comprobanteAdquisicion" class="form-label">Comprobante de Adquisición:</label>
+            <input type="file" id="comprobanteAdquisicion" name="comprobanteAdquisicion" class="form-control" (change)="onFileSelected($event)">
+          </div>
+        </form>
+      </div>
+    </div>
+  
+    <div class="col-lg-5">
+        <div class="form-container">
+          <br><br>
+          <div class="row">
+            <div class="col-lg-4">
+              <form (ngSubmit)="onSubmit()" #ubicacionForm1="">
+                <div class="mb-3">
+                  <label for="pais" class="form-label">País:</label>
+                  <input type="text" id="pais" name="pais" class="form-control">
+                </div>
+                <div class="mb-3">
+                  <label for="departamento" class="form-label">Departamento:</label>
+                  <input type="text" id="departamento" name="departamento" class="form-control">
+                </div>
+                <div class="mb-3">
+                  <label for="municipio" class="form-label">Municipio:</label>
+                  <input type="text" id="municipio" name="municipio" class="form-control">
+                </div>
+              </form>
+            </div>
+            <div class="col-lg-4">
+              <form (ngSubmit)="onSubmit()" #ubicacionForm2="">
+                <div class="mb-3">
+                  <label for="departamento2" class="form-label">Departamento:</label>
+                  <input type="text" id="departamento2" name="departamento2" class="form-control">
+                </div>
+                <div class="mb-3">
+                  <label for="bloque" class="form-label">Bloque:</label>
+                  <input type="text" id="bloque" name="bloque" class="form-control">
+                </div>
+                <div class="mb-3">
+                  <label for="aula" class="form-label">Aula:</label>
+                  <input type="text" id="aula" name="aula" class="form-control">
+                </div>
+              </form>
+            </div>
+            <div class="col-lg-4">
+              <form (ngSubmit)="onSubmit()" #ubicacionForm3="">
+                <div class="mb-3">
+                  <label for="detalle" class="form-label">Detalle:</label>
+                  <input type="text" id="detalle" name="detalle" class="form-control">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- Formulario Adicional -->
+        <div class="row">
+            <div class="col-lg-4">
+              <form (ngSubmit)="onSubmit()" #formularioAdicional="">
+                <div class="mb-3">
+                  <label for="valorAdquisicion" class="form-label">Valor de Adquisición:</label>
+                  <input type="text" id="valorAdquisicion" name="valorAdquisicion" class="form-control">
+                </div>
+              </form>
+            </div>
+            <div class="col-lg-4">
+              <form (ngSubmit)="onSubmit()" #formularioAdicional="">
+                <div class="mb-3">
+                  <label for="estadoUso" class="form-label">Estado de Uso:</label>
+                  <input type="text" id="estadoUso" name="estadoUso" class="form-control">
+                </div>
+              </form>
+            </div>
+            <div class="col-lg-4">
+              <form (ngSubmit)="onSubmit()" #formularioAdicional="">
+                <div class="mb-3">
+                  <label for="grupo" class="form-label">Grupo:</label>
+                  <input type="text" id="grupo" name="grupo" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Registrar</button>
+              </form>
+            </div>
+  </div>      
