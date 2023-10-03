@@ -1,1 +1,69 @@
-<p>tabla-general works!</p>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-3">
+      <label for="tipoMoneda">Tipo de Moneda</label>
+      <select id="tipoMoneda" class="form-select">
+        <option value="dolar">Dólar</option>
+        <option value="euro">Euro</option>
+        <option value="yen">Yen</option>
+        <option value="pesoBoliviano">Peso Boliviano</option>
+      </select>
+      <br>
+      <label for="valorUFV">Valor UFV:</label>
+      <label id="valorUFVBackend">123.45</label>
+      <br>
+      <label for="fechaActualActivos">Fecha Actual Activos:</label>
+      <label id="fechaActualBackend">2023-09-26</label>
+    </div>
+    <div class="col-md-3">
+      <label for="mostrarSolo">Mostrar Solo:</label>
+      <select id="mostrarSolo" class="form-select">
+        <option value="todo">Todo</option>
+        <option value="activo1">Activo 1</option>
+        <option value="activo2">Activo 2</option>
+        <!-- Agrega más opciones según sea necesario -->
+      </select>
+      <br>
+      <input type="text" class="form-control" placeholder="Buscar">
+      <button class="btn btn-primary mt-2">
+        <i class="bi bi-search"></i> Buscar
+      </button>
+    </div>
+    <div class="col-md-6">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Nombre de Grupo de Activos + Marca</th>
+          <th>Modelo</th>
+          <th>ID Activo</th>
+          <th>Valor Actual</th>
+          <th>Categoría</th>
+          <th>Custodio</th>
+          <th>Dirección de Activo</th>
+          <th></th> <!-- Columna vacía para Datos de Registro Inicial -->
+          <th>Seleccionar</th> <!-- Columna para checkbox -->
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Agrega filas con datos dinámicos desde tu backend -->
+        <tr>
+          <td>Datos Dinámicos</td>
+          <td>Datos Dinámicos</td>
+          <td>Datos Dinámicos</td>
+          <td>Datos Dinámicos</td>
+          <td>Datos Dinámicos</td>
+          <td>Datos Dinámicos</td>
+          <td>Datos Dinámicos</td>
+          <td><a href="#">Datos Registro Inicial</a></td>
+          <td><input type="checkbox"></td>
+        </tr>
+        <!-- Repite esta estructura para cada fila de datos -->
+        </tbody>
+      </table>
+      <button class="btn btn-primary float-end">
+        Reporte PDF
+      </button>
+    </div>
+  </div>
+</div>
+
