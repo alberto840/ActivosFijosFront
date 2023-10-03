@@ -23,6 +23,7 @@ import { TablaGeneralComponent } from './InicioUsuario/tabla-general/tabla-gener
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListaActivosAdminComponent } from './GestionUsuarios/lista-activos-admin/lista-activos-admin.component';
 import { MaterialModule } from './material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { MaterialModule } from './material.module';
     ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
-    MaterialModule
+    MaterialModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
