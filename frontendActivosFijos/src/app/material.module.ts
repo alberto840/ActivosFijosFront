@@ -19,8 +19,10 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-
+import { MatNativeDateModule, MatPseudoCheckboxModule } from '@angular/material/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 const myModule=[
   MatCardModule,
@@ -43,6 +45,14 @@ const myModule=[
   MatGridListModule,
   MatDatepickerModule, 
   MatNativeDateModule,
+  ReactiveFormsModule,
+  FormsModule,
+  MatTooltipModule,
+  MatPseudoCheckboxModule, 
+  MatRadioModule,
+  MatPseudoCheckboxModule,
+  MatSlideToggleModule
+
 
 ];
 
