@@ -2,7 +2,7 @@
     <div class="col-lg-3">
       <div class="form-container">
         <h2>Registro de Activo</h2>
-        <form (ngSubmit)="onSubmit()" #registroForm="">
+        <form >
           <div class="mb-3">
             <label for="nombreActivo" class="form-label">Nombre del Activo:</label>
             <input type="text" id="nombreActivo" name="nombreActivo" class="form-control" >
@@ -21,7 +21,7 @@
           </div>
           <div class="mb-3">
             <label for="comprobanteAdquisicion" class="form-label">Comprobante de Adquisición:</label>
-            <input type="file" id="comprobanteAdquisicion" name="comprobanteAdquisicion" class="form-control" (change)="onFileSelected($event)">
+            <input type="file" id="comprobanteAdquisicion" name="comprobanteAdquisicion" class="form-control" >
           </div>
         </form>
       </div>
@@ -32,7 +32,7 @@
           <br><br>
           <div class="row">
             <div class="col-lg-4">
-              <form (ngSubmit)="onSubmit()" #ubicacionForm1="">
+              <form >
                 <div class="mb-3">
                   <label for="pais" class="form-label">País:</label>
                   <input type="text" id="pais" name="pais" class="form-control">
@@ -48,7 +48,7 @@
               </form>
             </div>
             <div class="col-lg-4">
-              <form (ngSubmit)="onSubmit()" #ubicacionForm2="">
+              <form >
                 <div class="mb-3">
                   <label for="departamento2" class="form-label">Departamento:</label>
                   <input type="text" id="departamento2" name="departamento2" class="form-control">
@@ -64,7 +64,7 @@
               </form>
             </div>
             <div class="col-lg-4">
-              <form (ngSubmit)="onSubmit()" #ubicacionForm3="">
+              <form >
                 <div class="mb-3">
                   <label for="detalle" class="form-label">Detalle:</label>
                   <input type="text" id="detalle" name="detalle" class="form-control">
@@ -76,7 +76,7 @@
         <!-- Formulario Adicional -->
         <div class="row">
             <div class="col-lg-4">
-              <form (ngSubmit)="onSubmit()" #formularioAdicional="">
+              <form >
                 <div class="mb-3">
                   <label for="valorAdquisicion" class="form-label">Valor de Adquisición:</label>
                   <input type="text" id="valorAdquisicion" name="valorAdquisicion" class="form-control">
@@ -84,7 +84,7 @@
               </form>
             </div>
             <div class="col-lg-4">
-              <form (ngSubmit)="onSubmit()" #formularioAdicional="">
+              <form >
                 <div class="mb-3">
                   <label for="estadoUso" class="form-label">Estado de Uso:</label>
                   <input type="text" id="estadoUso" name="estadoUso" class="form-control">
@@ -92,7 +92,7 @@
               </form>
             </div>
             <div class="col-lg-4">
-              <form (ngSubmit)="onSubmit()" #formularioAdicional="">
+              <form >
                 <div class="mb-3">
                   <label for="grupo" class="form-label">Grupo:</label>
                   <input type="text" id="grupo" name="grupo" class="form-control">
