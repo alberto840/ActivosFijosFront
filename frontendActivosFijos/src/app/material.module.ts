@@ -23,6 +23,7 @@ import { MatNativeDateModule, MatPseudoCheckboxModule } from '@angular/material/
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatBadgeModule} from '@angular/material/badge';
 
 const myModule=[
   MatCardModule,
@@ -51,7 +52,8 @@ const myModule=[
   MatPseudoCheckboxModule, 
   MatRadioModule,
   MatPseudoCheckboxModule,
-  MatSlideToggleModule
+  MatSlideToggleModule,
+  MatBadgeModule
 
 
 ];
