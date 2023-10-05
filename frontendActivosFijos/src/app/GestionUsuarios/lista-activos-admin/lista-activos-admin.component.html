@@ -1,92 +1,114 @@
-<div class="panel">
-  <h1>UCB ACTIVOS</h1>
-  
-  <h2>TIPO DE MONEDA</h2>
-  <form class="tipoMoneda">
-    <select class="form-select form-select-sm" aria-label="Small select example">
-      <option selected>Seleccione el tipo de moneda</option>
-      <option value="1">Dolar $</option>
-      <option value="2">Bolivianos Bs.</option>
-      <option value="3">Euros</option>
-      <option value="4">UFV</option>
-    </select>
-  </form>
-
-  <div class="input-group">
-    <span class="input-group-text">Valor UFV</span>
-    <span class="input-group-text">UFV</span>
-  <span class="input-group-text">0.00</span>
-  <span class="input-group-text">Mostrar solo: </span>
-  <select class="form-select form-select-sm" aria-label="Small select example">
-    <option selected>Seleccione el tipo</option>
-    <option value="1">Automoviles</option>
-    <option value="2">Mobiliario</option>
-    
-  </select>
-  </div>
-
-  <div class="input-group">
-    <h3>Fecha</h3>
-    <mat-form-field>
-      <mat-label>Ponga la fecha</mat-label>
-      <input matInput [matDatepicker]="dp2">
-      <mat-hint>MM/DD/YYYY</mat-hint>
-      <mat-datepicker-toggle matIconSuffix [for]="dp2" disabled></mat-datepicker-toggle>
-      <mat-datepicker #dp2></mat-datepicker>
-    </mat-form-field>
-    
-  </div>
-
-    <mat-form-field>
-        <mat-label>Buscar</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+<div class="container">
+  <mat-card>
+    <mat-card-title>Tipo de moneda: </mat-card-title>
+    <form action="">
+      <mat-form-field>
+        <mat-label>Select an option</mat-label>
+        <mat-select disableRipple>
+          <mat-option value="1">Option 1</mat-option>
+          <mat-option value="2">Option 2</mat-option>
+          <mat-option value="3">Option 3</mat-option>
+        </mat-select>
       </mat-form-field>
-      
+      <mat-card-title>Valor UFV</mat-card-title>
+      <mat-card-content>5236.1</mat-card-content>
+    </form>
+    <div class="row">
+      <div class="col">
+        <mat-card-subtitle>
+          <p>Fecha actual activos: 15-6-2023</p>
+        </mat-card-subtitle>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Mostrar tipo</mat-label>
+          <mat-select disableRipple>
+            <mat-option value="1">Option 1</mat-option>
+            <mat-option value="2">Option 2</mat-option>
+            <mat-option value="3">Option 3</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Buscar</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="container">
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? toggleAllRows() : null"
+                          [checked]="selection.hasValue() && isAllSelected()"
+                          [indeterminate]="selection.hasValue() && !isAllSelected()"
+                          [aria-label]="checkboxLabel()">
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()"
+                          (change)="$event ? selection.toggle(row) : null"
+                          [checked]="selection.isSelected(row)"
+                          [aria-label]="checkboxLabel(row)">
+            </mat-checkbox>
+          </td>
+        </ng-container>
       
         <!-- Position Column -->
-        <ng-container matColumnDef="position">
+        <ng-container matColumnDef="nombre">
           <th mat-header-cell *matHeaderCellDef> Nombre de grupo de activos </th>
-          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
         </ng-container>
       
         <!-- Name Column -->
-        <ng-container matColumnDef="name">
+        <ng-container matColumnDef="modelo">
           <th mat-header-cell *matHeaderCellDef> Modelo </th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.modelo}} </td>
         </ng-container>
       
         <!-- Weight Column -->
-        <ng-container matColumnDef="weight">
+        <ng-container matColumnDef="idactivo">
           <th mat-header-cell *matHeaderCellDef> ID Activo </th>
-          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.idactivo}} </td>
         </ng-container>
       
         <!-- Symbol Column -->
-        <ng-container matColumnDef="symbol">
+        <ng-container matColumnDef="valor">
           <th mat-header-cell *matHeaderCellDef> Valor Actual </th>
-          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.valor}} </td>
         </ng-container>
-
         <ng-container matColumnDef="categoria">
-            <th mat-header-cell *matHeaderCellDef> Categoría </th>
-            <td mat-cell *matCellDef="let element"> {{element.categoria}} </td>
-          </ng-container>
-
+          <th mat-header-cell *matHeaderCellDef> Categoría </th>
+          <td mat-cell *matCellDef="let element"> {{element.categoria}} </td>
+        </ng-container>
         <ng-container matColumnDef="custodio">
-            <th mat-header-cell *matHeaderCellDef> Custodío </th>
-            <td mat-cell *matCellDef="let element"> {{element.custodio}} </td>
-          </ng-container>
-      
+          <th mat-header-cell *matHeaderCellDef> Custodio </th>
+          <td mat-cell *matCellDef="let element"> {{element.custodio}} </td>
+        </ng-container>
+        <ng-container matColumnDef="direccion">
+          <th mat-header-cell *matHeaderCellDef> Dirección del activo </th>
+          <td mat-cell *matCellDef="let element"> {{element.direccion}} </td>
+        </ng-container>
+        <ng-container matColumnDef="datos">
+          <th mat-header-cell *matHeaderCellDef> Datos </th>
+          <td mat-cell *matCellDef="let element"><a href="">{{element.direccion}}</a>  </td>
+        </ng-container>
+        <ng-container matColumnDef="actualizar">
+          <th mat-header-cell *matHeaderCellDef> Actualizar</th>
+          <td mat-cell *matCellDef="let element"> {{element.direccion}} </td>
+        </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      
-        <!-- Row shown when there is no matching data. -->
-        <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+            (click)="selection.toggle(row)">
         </tr>
       </table>
       
-      <button type="button" class="btn btn-primary">Reporte PDF</button>
-      <button type="button" class="btn btn-primary">Actualizar</button>
+    </div>
+    <button mat-raised-button color="primary">Reporte PDF</button>
+    <br>
+    <button mat-raised-button color="primary">Actualizar seleccionados</button>
+  </mat-card>
 </div>

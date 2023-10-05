@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
@@ -24,6 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatBadgeModule} from '@angular/material/badge';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 const myModule=[
   MatCardModule,
@@ -53,7 +54,10 @@ const myModule=[
   MatRadioModule,
   MatPseudoCheckboxModule,
   MatSlideToggleModule,
-  MatBadgeModule
+  MatBadgeModule,
+  MatCheckboxModule,
+  NgFor
+
 
 
 ];
