@@ -24,9 +24,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListaActivosAdminComponent } from './GestionUsuarios/lista-activos-admin/lista-activos-admin.component';
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LectorDetalleGrupoComponent } from './lector-detalle-grupo/lector-detalle-grupo.component';
+import { InicioUserLectorComponent } from './InicioUsers/inicio-user-lector/inicio-user-lector.component';
+import { InicioUserActualizadorComponent } from './InicioUsers/inicio-user-actualizador/inicio-user-actualizador.component';
 
 @NgModule({
   declarations: [
+    InicioUserActualizadorComponent,
+    InicioUserLectorComponent,
+    LectorDetalleGrupoComponent,
     AppComponent,
     ActualizarListaActivosComponent,
     ActualizacionActivoComponent,
