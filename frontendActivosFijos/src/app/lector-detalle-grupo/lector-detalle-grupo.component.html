@@ -1,1 +1,75 @@
-<p>lector-detalle-grupo works!</p>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Actualización de Activo</h2>
+      <label for="nombreActivo">Nombre de Activo:</label>
+      <label id="nombreActivoBackend">Dato desde el backend</label>
+      <br>
+      <label for="fotosConstancia">Fotos de Constancia:</label>
+      <img src="ruta-de-la-imagen-1.jpg" alt="Foto 1" class="img-thumbnail">
+      <img src="ruta-de-la-imagen-2.jpg" alt="Foto 2" class="img-thumbnail">
+      <img src="ruta-de-la-imagen-3.jpg" alt="Foto 3" class="img-thumbnail">
+      <img src="ruta-de-la-imagen-4.jpg" alt="Foto 4" class="img-thumbnail">
+      <br>
+      <label for="categoria">Categoría:</label>
+      <label id="categoriaBackend">Dato desde el backend</label>
+      <br>
+      <label for="cantidad">Cantidad:</label>
+      <label id="cantidadBackend">Dato desde el backend</label>
+      <br>
+      <div class="qr-container">
+        <label for="codigoQR">Identificador código QR:</label>
+        <img src="ruta-del-QR.png" alt="Código QR">
+      </div>
+      <br>
+      <button class="btn btn-primary">Guardar PDF</button>
+    </div>
+    <div class="col-md-8">
+      <h2>Ubicaciones de Activos del Mismo Grupo</h2>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Nombre Ubicación</th>
+          <th>Cantidad</th>
+          <th>Valor Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Llena esta tabla con datos dinámicos desde tu backend -->
+        <tr>
+          <td>Ubicación 1</td>
+          <td>5</td>
+          <td>$1000</td>
+        </tr>
+        <!-- Repite esta estructura para cada fila de datos -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Código Unitario Activo</th>
+          <th>Valor Actual</th>
+          <th>Custodio</th>
+          <th>Dirección de Activo</th>
+          <th></th> <!-- Columna vacía para Datos de Registro Inicial -->
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Llena esta tabla con datos dinámicos desde tu backend -->
+        <tr>
+          <td>Código 1</td>
+          <td>$500</td>
+          <td>Custodio 1</td>
+          <td>Dirección 1</td>
+          <td><a href="#">Datos Registro Inicial</a></td>
+        </tr>
+        <!-- Repite esta estructura para cada fila de datos -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
