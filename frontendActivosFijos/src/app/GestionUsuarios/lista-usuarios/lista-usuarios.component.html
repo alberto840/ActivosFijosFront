@@ -1,83 +1,82 @@
 <div class="conteiner">
-    <h1>Actualizaciones y modificaciones</h1>
-        <h2>Lista de usuarios</h2>
-    
-    <h4 text-align="center">Mostrar solo:</h4>
-   
-    <select class="form-select" aria-label="Default select example">
-      <option selected>Seleccione</option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
-    </select>
-    <div>
-        <mat-form-field>
-            <mat-label>Buscar</mat-label>
-            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
-          </mat-form-field>
-          
-          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-          
-            <!-- Position Column -->
-            <ng-container matColumnDef="position">
-              <th mat-header-cell *matHeaderCellDef> Nombre del Usuario </th>
-              <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-            </ng-container>
-          
-            <!-- Name Column -->
-            <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef> ID </th>
-              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-            </ng-container>
-          
-            <!-- Weight Column -->
-            <ng-container matColumnDef="weight">
-              <th mat-header-cell *matHeaderCellDef> Rol </th>
-              <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-            </ng-container>
-          
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="symbol">
-              <th mat-header-cell *matHeaderCellDef> Email </th>
-              <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-            </ng-container>
+  <h1>Actualizaciones y modificaciones</h1>
+      <h2>Lista de usuarios</h2>
 
-            <ng-container matColumnDef="numero">
-              <th mat-header-cell *matHeaderCellDef> Numero </th>
-              <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-            </ng-container>
-          
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          
-            <!-- Row shown when there is no matching data. -->
-            <tr class="mat-row" *matNoDataRow>
-              <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-            </tr>
-          </table>
-          
-    </div>
-    
+  <h4 text-align="center">Mostrar solo:</h4>
+
+  <select class="form-select" aria-label="Default select example">
+    <option selected>Seleccione</option>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+  </select>
+  <div>
+      <mat-form-field>
+          <mat-label>Buscar</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+        </mat-form-field>
+
+        <table mat-table [dataSource]="registrosUsers" class="mat-elevation-z8">
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> Nombre del Usuario </th>
+            <td mat-cell *matCellDef="let element"> {{element.usuario_nombre}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.id_usuario}} </td>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="weight">
+            <th mat-header-cell *matHeaderCellDef> Rol </th>
+            <td mat-cell *matCellDef="let element"> {{element.usuario_rol}} </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="symbol">
+            <th mat-header-cell *matHeaderCellDef> Email </th>
+            <td mat-cell *matCellDef="let element"> {{element.usuario_correo}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="numero">
+            <th mat-header-cell *matHeaderCellDef> Numero </th>
+            <td mat-cell *matCellDef="let element"> {{element.usuario_telefono}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          </tr>
+        </table>
+
+  </div>
 
 
-      <mat-card class="result">
-  <mat-card-content>
-    <section class="example-section">
-      <mat-slide-toggle class="example-margin"
-          [disabled]="disabled">
-        Editar
-      </mat-slide-toggle>
-    </section>
-  </mat-card-content>
-  <button mat-fab extended color="accent">
-    <mat-icon ></mat-icon>
-    Actualizar
-  </button>
+
+    <mat-card class="result">
+<mat-card-content>
+  <section class="example-section">
+    <mat-slide-toggle class="example-margin"
+        [disabled]="disabled">
+      Editar
+    </mat-slide-toggle>
+  </section>
+</mat-card-content>
+<button mat-fab extended color="accent">
+  <mat-icon ></mat-icon>
+  Actualizar
+</button>
 </mat-card>
 
 
 
-      
-      
-    
-    
+
+
+

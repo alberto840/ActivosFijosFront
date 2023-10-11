@@ -1,6 +1,10 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import { Router } from '@angular/router';
+import { ActivoService } from 'src/app/Services/Activos/activo.service';
+import { UsuarioService } from 'src/app/Services/Usuarios/usuario.service';
 
 
 
@@ -12,7 +16,7 @@ export interface PeriodicElement {
   categoria: string;
   custodio: string;
   direccion: string;
-  
+
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
@@ -26,9 +30,26 @@ const ELEMENT_DATA: PeriodicElement[] = [
   selector: 'app-lista-activos-admin',
   templateUrl: './lista-activos-admin.component.html',
   styleUrls: ['./lista-activos-admin.component.css'],
- 
+
 })
-export class ListaActivosAdminComponent {
+export class ListaActivosAdminComponent implements OnInit {
+
+  registrosActivos!: any;
+  constructor(private router: Router, public fb: FormBuilder, public activoService: ActivoService) {}
+  ngOnInit(): void {
+    this.activoService.getAllActivos().subscribe(
+      response => {
+        this.registrosActivos = response;
+
+        // Manejar la respuesta de éxito aquí
+        console.log('Registros de activos mostradas', response);
+      },
+      error => {
+        // Manejar el error aquí
+        console.error('Error al mostrar el activos', error);
+      }
+    )
+  }
   displayedColumns: string[] = ['select', 'nombre', 'modelo', 'idactivo', 'valor', 'categoria', 'custodio', 'direccion', 'datos', 'actualizar'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   selection = new SelectionModel<PeriodicElement>(true, []);
@@ -62,6 +83,6 @@ export class ListaActivosAdminComponent {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.nombre + 1}`;
   }
 
-  
+
 
 }

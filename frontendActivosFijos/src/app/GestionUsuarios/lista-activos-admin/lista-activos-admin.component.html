@@ -37,7 +37,7 @@
       </div>
     </div>
     <div class="container">
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <table mat-table [dataSource]="registrosActivos" class="mat-elevation-z8">
 
         <!-- Checkbox Column -->
         <ng-container matColumnDef="select">
@@ -56,45 +56,45 @@
             </mat-checkbox>
           </td>
         </ng-container>
-      
+
         <!-- Position Column -->
         <ng-container matColumnDef="nombre">
-          <th mat-header-cell *matHeaderCellDef> Nombre de grupo de activos </th>
-          <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+          <th mat-header-cell *matHeaderCellDef> Nombre activo/modelo </th>
+          <td mat-cell *matCellDef="let element"> {{element.activo_nombre}} </td>
         </ng-container>
-      
+
         <!-- Name Column -->
         <ng-container matColumnDef="modelo">
-          <th mat-header-cell *matHeaderCellDef> Modelo </th>
-          <td mat-cell *matCellDef="let element"> {{element.modelo}} </td>
+          <th mat-header-cell *matHeaderCellDef> Marca </th>
+          <td mat-cell *matCellDef="let element"> {{element.activo_marca}} </td>
         </ng-container>
-      
+
         <!-- Weight Column -->
         <ng-container matColumnDef="idactivo">
           <th mat-header-cell *matHeaderCellDef> ID Activo </th>
-          <td mat-cell *matCellDef="let element"> {{element.idactivo}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.activo_id}} </td>
         </ng-container>
-      
+
         <!-- Symbol Column -->
         <ng-container matColumnDef="valor">
           <th mat-header-cell *matHeaderCellDef> Valor Actual </th>
-          <td mat-cell *matCellDef="let element"> {{element.valor}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.activo_valor}} </td>
         </ng-container>
         <ng-container matColumnDef="categoria">
           <th mat-header-cell *matHeaderCellDef> Categoría </th>
-          <td mat-cell *matCellDef="let element"> {{element.categoria}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.activo_categoria}} </td>
         </ng-container>
         <ng-container matColumnDef="custodio">
           <th mat-header-cell *matHeaderCellDef> Custodio </th>
-          <td mat-cell *matCellDef="let element"> {{element.custodio}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.activo_custodio}} </td>
         </ng-container>
         <ng-container matColumnDef="direccion">
           <th mat-header-cell *matHeaderCellDef> Dirección del activo </th>
-          <td mat-cell *matCellDef="let element"> {{element.direccion}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.activo_direccion}} </td>
         </ng-container>
         <ng-container matColumnDef="datos">
           <th mat-header-cell *matHeaderCellDef> Datos </th>
-          <td mat-cell *matCellDef="let element"><a href="">{{element.direccion}}</a>  </td>
+          <td mat-cell *matCellDef="let element"><a href="">Ver detalle activo</a>  </td>
         </ng-container>
         <ng-container matColumnDef="actualizar">
           <th mat-header-cell *matHeaderCellDef> Actualizar</th>
@@ -105,7 +105,7 @@
             (click)="selection.toggle(row)">
         </tr>
       </table>
-      
+
     </div>
     <button mat-raised-button color="primary">Reporte PDF</button>
     <br>

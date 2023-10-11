@@ -27,10 +27,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LectorDetalleGrupoComponent } from './lector-detalle-grupo/lector-detalle-grupo.component';
 import { InicioUserLectorComponent } from './InicioUsers/inicio-user-lector/inicio-user-lector.component';
 import { InicioUserActualizadorComponent } from './InicioUsers/inicio-user-actualizador/inicio-user-actualizador.component';
+import { MenuIzquierdoEditorComponent } from './Utilitarios/menu-izquierdo-editor/menu-izquierdo-editor.component';
+import { MenuIzquierdoLectorComponent } from './Utilitarios/menu-izquierdo-lector/menu-izquierdo-lector.component';
 
 @NgModule({
   declarations: [
     InicioUserActualizadorComponent,
+    MenuIzquierdoEditorComponent,
+    MenuIzquierdoLectorComponent,
     InicioUserLectorComponent,
     LectorDetalleGrupoComponent,
     AppComponent,
