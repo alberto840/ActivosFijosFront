@@ -29,6 +29,7 @@ import { InicioUserLectorComponent } from './InicioUsers/inicio-user-lector/inic
 import { InicioUserActualizadorComponent } from './InicioUsers/inicio-user-actualizador/inicio-user-actualizador.component';
 import { MenuIzquierdoEditorComponent } from './Utilitarios/menu-izquierdo-editor/menu-izquierdo-editor.component';
 import { MenuIzquierdoLectorComponent } from './Utilitarios/menu-izquierdo-lector/menu-izquierdo-lector.component';
+import { LectorDetalleActivoComponent } from './DetalleActivo/lector-detalle-activo/lector-detalle-activo.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { MenuIzquierdoLectorComponent } from './Utilitarios/menu-izquierdo-lecto
     MenuIzquierdoComponent,
     VentanaLoginComponent,
     TablaGeneralComponent,
-    ListaActivosAdminComponent
+    ListaActivosAdminComponent,
+    LectorDetalleActivoComponent
   ],
   imports: [
     FormsModule,
