@@ -36,7 +36,7 @@ const routes: Routes = [
   { path: 'admin', component: MenuIzquierdoComponent,
     children:[
       { path: 'listaActivosAdmin', component: ListaActivosAdminComponent },
-      { path: 'actualizarPagina', component: ActualizacionDatosSoftwareComponent },
+      { path: 'actualizarPagina', component: ActualizacionDatosSoftwareComponent },//FALTA SERVICE
       { path: 'listaUsuarios', component: ListaUsuariosComponent },
       { path: 'tablaResumenAdmin', component: TablaResumenComponent },
     ]
@@ -44,7 +44,6 @@ const routes: Routes = [
   //Lector
   { path: 'lector', component: MenuIzquierdoLectorComponent,
     children:[
-
       { path: 'inicioLector', component: InicioUserLectorComponent },//FALTA
       { path: 'detalleGrupo', component: LectorDetalleGrupoComponent },
       { path: 'tablaGeneral', component: TablaGeneralComponent },

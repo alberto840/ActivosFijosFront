@@ -46,14 +46,14 @@
         </thead>
         <tbody>
         <!-- Agrega filas con datos dinámicos desde tu backend -->
-        <tr>
-          <td>Datos Dinámicos</td>
-          <td>Datos Dinámicos</td>
-          <td>Datos Dinámicos</td>
-          <td>Datos Dinámicos</td>
-          <td>Datos Dinámicos</td>
-          <td>Datos Dinámicos</td>
-          <td>Datos Dinámicos</td>
+        <tr *ngFor="let element of registrosActivos">
+          <td>{{element.activo_nombre}}</td>
+          <td>{{element.activo_marca}}</td>
+          <td>{{element.activo_id}}</td>
+          <td>{{element.activo_valor}}</td>
+          <td>{{element.activo_categoria}}</td>
+          <td>{{element.activo_custodio}}</td>
+          <td>{{element.activo_direccion}}</td>
           <td><a href="#">Datos Registro Inicial</a></td>
           <td><input type="checkbox"></td>
         </tr>
