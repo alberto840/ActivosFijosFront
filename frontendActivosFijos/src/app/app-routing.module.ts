@@ -56,10 +56,11 @@ const routes: Routes = [
       //{ path: 'inicioEditor', component: InicioUserActualizadorComponent },//FALTA
       { path: 'registrarDatosAdquisicion', component: DatosAdquisicionComponent },
       { path: 'actualizarActivo', component: ActualizacionActivoComponent },
-      { path: 'transferenciaActivo', component: TransferenciaActivoComponent },//falta
+      { path: 'transferenciaActivo', component: TransferenciaActivoComponent },
       { path: 'registroMarca', component: RegistroMarcaComponent },
       { path: 'registroCustodio', component: RegistroCustodioComponent },
       { path: 'registroUbicacion', component: RegistroLocalizacionComponent },
+      { path: 'grupoActivos', component: ActualizarListaActivosComponent },
     ]
    },
 ];
