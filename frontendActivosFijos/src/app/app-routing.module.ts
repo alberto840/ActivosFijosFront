@@ -48,6 +48,7 @@ const routes: Routes = [
       { path: 'inicioLector', component: InicioUserLectorComponent },//FALTA
       { path: 'detalleGrupo', component: LectorDetalleGrupoComponent },
       { path: 'tablaGeneral', component: TablaGeneralComponent },
+      { path: 'detalleActivo', component: LectorDetalleActivoComponent },
     ]
   },
   //Editor
