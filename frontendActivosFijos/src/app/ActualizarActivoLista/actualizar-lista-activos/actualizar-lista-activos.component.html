@@ -1,232 +1,182 @@
-<p>Actualización Lista de Activos</p>
-<div class="container">
-    <mat-card-title> Nuevos Datos de Estado</mat-card-title>
-    
-    <div class="example-button-container">
-        <h5>Fotos de constancia</h5>
-        <button mat-fab color="accent" aria-label="">
-            
-            <mat-icon>add</mat-icon>
-        </button>
+<div class="container mt-4">
+  <div class="row">
+    <!-- Columna 1 - Detalles del Activo -->
+    <div class="col-md-4">
+      <h2>Actualización de Activo</h2>
+      <label for="nombreActivo">Nombre de Activo:</label>
+      <label id="nombreActivoBackend">Dato desde el backend</label>
+      <br>
+      <label for="fotosConstancia">Fotos de Constancia:</label>
+      <img src="ruta-de-la-imagen-1.jpg" alt="Foto 1" class="img-thumbnail">
+      <img src="ruta-de-la-imagen-2.jpg" alt="Foto 2" class="img-thumbnail">
+      <img src="ruta-de-la-imagen-3.jpg" alt="Foto 3" class="img-thumbnail">
+      <img src="ruta-de-la-imagen-4.jpg" alt="Foto 4" class="img-thumbnail">
+      <br>
+      <label for="categoria">Categoría:</label>
+      <label id="categoriaBackend">Dato desde el backend</label>
+      <br>
+      <label for="cantidad">Cantidad:</label>
+      <label id="cantidadBackend">Dato desde el backend</label>
+      <br>
+      <div class="qr-container">
+        <label for="codigoQR">Identificador código QR:</label>
+        <img src="ruta-del-QR.png" alt="Código QR">
+      </div>
+      <br>
+      <button class="btn btn-primary">Guardar PDF</button>
     </div>
-    <div class="row">
-        <div class="col">
-            <h5>Custodío: </h5>
+
+    <!-- Columna 2 - Formulario de Actualización -->
+    <div class="col-md-4">
+      <h2> <br></h2>
+      <!-- Switch para Enviar a Mantenimiento -->
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="enviarMantenimiento">
+        <label class="form-check-label" for="enviarMantenimiento">Enviar a Mantenimiento</label>
+      </div>
+      <!-- Dropdown para Custodio -->
+      <div class="form-group">
+        <label for="custodio">Custodio:</label>
+        <select class="form-control" id="custodio">
+          <!-- Opciones para el dropdown de Custodio -->
+          <option value="custodio1">Custodio 1</option>
+          <option value="custodio2">Custodio 2</option>
+          <!-- Agrega más opciones según sea necesario -->
+        </select>
+      </div>
+      <!-- Dropdown para Departamento -->
+      <div class="form-group">
+        <label for="departamento">Departamento:</label>
+        <select class="form-control" id="departamento">
+          <!-- Opciones para el dropdown de Departamento -->
+          <option value="depto1">Departamento 1</option>
+          <option value="depto2">Departamento 2</option>
+          <!-- Agrega más opciones según sea necesario -->
+        </select>
+      </div>
+      <!-- Dropdown para Estado de Uso -->
+      <div class="form-group">
+        <label for="estadoUso">Estado de Uso:</label>
+        <select class="form-control" id="estadoUso">
+          <!-- Opciones para el dropdown de Estado de Uso -->
+          <option value="nuevo">Nuevo</option>
+          <option value="usado">Usado</option>
+          <option value="malo">Malo</option>
+          <!-- Agrega más opciones según sea necesario -->
+        </select>
+      </div>
+    </div>
+
+    <!-- Columna 3 - Formulario Adicional dividido en dos columnas -->
+    <div class="col-md-4">
+      <h2> <br></h2>
+      <div class="row">
+        <!-- Primera columna del formulario adicional -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="pais">Pais:</label>
+            <select class="form-control" id="pais">
+              <!-- Opciones para el dropdown de Pais -->
+              <option value="pais1">Pais 1</option>
+              <option value="pais2">Pais 2</option>
+              <!-- Agrega más opciones según sea necesario -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="departamentoForm">Departamento:</label>
+            <select class="form-control" id="departamentoForm">
+              <!-- Opciones para el dropdown de Departamento -->
+              <option value="deptoForm1">Departamento 1</option>
+              <option value="deptoForm2">Departamento 2</option>
+              <!-- Agrega más opciones según sea necesario -->
+            </select>
+          </div>
         </div>
-        <div class="col">
-            <mat-form-field>
-                <mat-label>Custodio</mat-label>
-                <mat-select disableRipple>
-                  <mat-option value="1">Option 1</mat-option>
-                  <mat-option value="2">Option 2</mat-option>
-                  <mat-option value="3">Option 3</mat-option>
-                </mat-select>
-              </mat-form-field>
-        </div>  
-        <div class="col">
-            <mat-form-field>
-                <mat-label>Departamento</mat-label>
-                <mat-select disableRipple>
-                  <mat-option value="1">Option 1</mat-option>
-                  <mat-option value="2">Option 2</mat-option>
-                  <mat-option value="3">Option 3</mat-option>
-                </mat-select>
-              </mat-form-field>
-        </div>   
-        <div class="col">
-            <mat-form-field>
-                <mat-label>Estado de Uso</mat-label>
-                <mat-select disableRipple>
-                  <mat-option value="1">Option 1</mat-option>
-                  <mat-option value="2">Option 2</mat-option>
-                  <mat-option value="3">Option 3</mat-option>
-                </mat-select>
-              </mat-form-field>
-        </div>       
+        <!-- Segunda columna del formulario adicional -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="municipio">Municipio:</label>
+            <select class="form-control" id="municipio">
+              <!-- Opciones para el dropdown de Municipio -->
+              <option value="municipio1">Municipio 1</option>
+              <option value="municipio2">Municipio 2</option>
+              <!-- Agrega más opciones según sea necesario -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="bloque">Bloque:</label>
+            <select class="form-control" id="bloque">
+              <!-- Opciones para el dropdown de Bloque -->
+              <option value="bloque1">Bloque 1</option>
+              <option value="bloque2">Bloque 2</option>
+              <!-- Agrega más opciones según sea necesario -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="aula">Aula:</label>
+            <select class="form-control" id="aula">
+              <!-- Opciones para el dropdown de Aula -->
+              <option value="aula1">Aula 1</option>
+              <option value="aula2">Aula 2</option>
+              <!-- Agrega más opciones según sea necesario -->
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tercera columna del formulario adicional -->
+      <div class="form-group">
+        <label for="detalle">Detalle:</label>
+        <textarea class="form-control" id="detalle" rows="4" placeholder="Detalle"></textarea>
+      </div>
+
+      <!-- Botón para Actualizar Seleccionados -->
+      <div class="text-center">
+        <button class="btn btn-primary">Actualizar Seleccionados</button>
+      </div>
+    </div>
+    <!-- Tabla -->
+    <div class="col-md-4">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Ubicacion</th>
+            <th>Cantidad</th>
+            <th>Valor Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Agrega filas de datos aquí -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Columna 1 - Detalles del Activo -->
+    <div class="col-md-6">
+      <!-- Contenido existente... -->
     </div>
 
-    <section>
-        <mat-card>
-           
-            <div class="row row-cols-2">
-                <div class="col">
-                    <mat-card-title>Seleccionar dirección origen</mat-card-title>
-                    <div class="row row-cols-2">
-                        <div class="col">
-                            <mat-form-field>
-                                <mat-label>Pais</mat-label>
-                                <mat-select disableRipple>
-                                  <mat-option value="1">Option 1</mat-option>
-                                  <mat-option value="2">Option 2</mat-option>
-                                  <mat-option value="3">Option 3</mat-option>
-                                </mat-select>
-                              </mat-form-field>
-                        </div>
-                        <div class="col">
-                            <mat-form-field>
-                                <mat-label>Departamento ()</mat-label>
-                                <mat-select disableRipple>
-                                  <mat-option value="1">Option 1</mat-option>
-                                  <mat-option value="2">Option 2</mat-option>
-                                  <mat-option value="3">Option 3</mat-option>
-                                </mat-select>
-                              </mat-form-field>
-                        </div>
-                        <div class="col">
-                            <mat-form-field>
-                                <mat-label>Departamento</mat-label>
-                                <mat-select disableRipple>
-                                  <mat-option value="1">Option 1</mat-option>
-                                  <mat-option value="2">Option 2</mat-option>
-                                  <mat-option value="3">Option 3</mat-option>
-                                </mat-select>
-                              </mat-form-field>
-                        </div>
-                        <div class="col">
-                            <mat-form-field>
-                                <mat-label>Bloque</mat-label>
-                                <mat-select disableRipple>
-                                  <mat-option value="1">Option 1</mat-option>
-                                  <mat-option value="2">Option 2</mat-option>
-                                  <mat-option value="3">Option 3</mat-option>
-                                </mat-select>
-                              </mat-form-field>
-                        </div>
-                        <div class="col">
-                            <mat-form-field>
-                                <mat-label>Municipio</mat-label>
-                                <mat-select disableRipple>
-                                  <mat-option value="1">Option 1</mat-option>
-                                  <mat-option value="2">Option 2</mat-option>
-                                  <mat-option value="3">Option 3</mat-option>
-                                </mat-select>
-                              </mat-form-field>
-                        </div>
-                        <div class="col">
-                            <mat-form-field>
-                                <mat-label>Aula</mat-label>
-                                <mat-select disableRipple>
-                                  <mat-option value="1">Option 1</mat-option>
-                                  <mat-option value="2">Option 2</mat-option>
-                                  <mat-option value="3">Option 3</mat-option>
-                                </mat-select>
-                              </mat-form-field>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <mat-card-title>Seleccionar Direccion destino</mat-card-title>
-                    <div class="row row-cols-2">
-                        <div class="col">
-                            <mat-form-field>
-                                <mat-label>Pais</mat-label>
-                                <mat-select disableRipple>
-                                  <mat-option value="1">Option 1</mat-option>
-                                  <mat-option value="2">Option 2</mat-option>
-                                  <mat-option value="3">Option 3</mat-option>
-                                </mat-select>
-                              </mat-form-field>
-                        </div>
-                        <div class="col">
-                            <mat-form-field>
-                                <mat-label>Departamento ()</mat-label>
-                                <mat-select disableRipple>
-                                  <mat-option value="1">Option 1</mat-option>
-                                  <mat-option value="2">Option 2</mat-option>
-                                  <mat-option value="3">Option 3</mat-option>
-                                </mat-select>
-                              </mat-form-field>
-                        </div>
-                        <div class="col">
-                            <mat-form-field>
-                                <mat-label>Departamento</mat-label>
-                                <mat-select disableRipple>
-                                  <mat-option value="1">Option 1</mat-option>
-                                  <mat-option value="2">Option 2</mat-option>
-                                  <mat-option value="3">Option 3</mat-option>
-                                </mat-select>
-                              </mat-form-field>
-                        </div>
-                        <div class="col">
-                            <mat-form-field>
-                                <mat-label>Bloque</mat-label>
-                                <mat-select disableRipple>
-                                  <mat-option value="1">Option 1</mat-option>
-                                  <mat-option value="2">Option 2</mat-option>
-                                  <mat-option value="3">Option 3</mat-option>
-                                </mat-select>
-                              </mat-form-field>
-                        </div>
-                        <div class="col">
-                            <mat-form-field>
-                                <mat-label>Municipio</mat-label>
-                                <mat-select disableRipple>
-                                  <mat-option value="1">Option 1</mat-option>
-                                  <mat-option value="2">Option 2</mat-option>
-                                  <mat-option value="3">Option 3</mat-option>
-                                </mat-select>
-                              </mat-form-field>
-                        </div>
-                        <div class="col">
-                            <mat-form-field>
-                                <mat-label>Aula</mat-label>
-                                <mat-select disableRipple>
-                                  <mat-option value="1">Option 1</mat-option>
-                                  <mat-option value="2">Option 2</mat-option>
-                                  <mat-option value="3">Option 3</mat-option>
-                                </mat-select>
-                              </mat-form-field>
-                        </div>
-                        
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="">
-                        <form >
-                          <input type="text" placeholder="Search.." name="search">
-                          <button type="submit">
-                            <mat-icon>search</mat-icon>
-                          </button>
-                        </form>
-                      </div>
-                      <button>
-                        <mat-icon>add</mat-icon>
-                      </button>
-                </div>
+    <!-- Columna 3 - Segunda tabla y botón de actualización -->
+    <div class="col-md-6">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Codigo Unitario Activo</th>
+            <th>Valor Actual</th>
+            <th>Custodio</th>
+            <th>Direccion de Activo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Agrega filas de datos aquí -->
+        </tbody>
+      </table>
+      <button class="btn btn-primary">Actualizar</button>
+    </div>
+  </div>
 
-            </div>
-            <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-              <!-- Position Column -->
-              <ng-container matColumnDef="position">
-                <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-              </ng-container>
-            
-              <!-- Name Column -->
-              <ng-container matColumnDef="name">
-                <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-              </ng-container>
-            
-              <!-- Weight Column -->
-              <ng-container matColumnDef="weight">
-                <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
-              </ng-container>
-            
-              <!-- Symbol Column -->
-              <ng-container matColumnDef="symbol">
-                <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
-              </ng-container>
-            
-              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-            </mat-table>
-        </mat-card>
-        
-    </section>
-        
-
-
+  
 </div>
