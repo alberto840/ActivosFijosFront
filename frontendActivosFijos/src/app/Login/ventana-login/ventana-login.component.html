@@ -11,25 +11,25 @@
   <div class="container d-flex justify-content-center align-items-center vh-100">
     <div class="text-center">
       <img src="https://sobretodopersonas.ucb.edu.bo/wp-content/uploads/2023/04/logo_ucb_nacional.png" alt="Logo" width="100" class="img1">
-      <div class="card mt-3">
+      <div class="card mt-3 formregistro">
         <div class="card-header">
           BIENVENIDO A UCB Activos
         </div>
         <div class="card-body">
-          <form action="procesar-formulario.php" method="post">
-            <div class="mb-3">
+          <form (ngSubmit)="submitForm()" method="post">
+            <div class="mb-3 form-group">
               <label for="email" class="form-label">Correo Registrado</label>
-              <input type="email" class="form-control" id="email" name="email" placeholder="Ingresar Correo">
+              <input type="email" class="form-control" id="email" name="email" [(ngModel)]="username" placeholder="Ingresar Correo" required>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 form-group">
               <label for="password" class="form-label">Contraseña</label>
-              <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">
+              <input type="password" class="form-control" id="password" name="password" [(ngModel)]="password" placeholder="Contraseña" required>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 form-group">
               <label for="captcha" class="form-label">Verificación reCAPTCHA</label>
               <div class="g-recaptcha" data-sitekey="TU_CLAVE_DE_SITIO_RECAPTCHA"></div>
             </div>
-            <button type="submit" class="btn btn-primary btn-block" routerLink="../lector">Ingresar</button>
+            <button type="submit" class="btn btn-primary btn-block" >Ingresar</button>
           </form>
         </div>
       </div>
