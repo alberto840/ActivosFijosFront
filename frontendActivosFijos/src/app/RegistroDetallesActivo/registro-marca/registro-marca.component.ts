@@ -36,11 +36,31 @@ export class RegistroMarcaComponent implements OnInit{
       response => {
         // Manejar la respuesta de éxito aquí
         console.log('Marca creada exitosamente', response);
+        this.mostrarMensajeRegistroExito();
       },
       error => {
         // Manejar el error aquí
         console.error('Error al crear la marca', error);
+        this.mostrarMensajeRegistroError();
       }
       )
+  }
+  mostrarAlerta = false;
+  mostrarAlertaError = false;
+  mostrarMensajeRegistroExito() {
+    this.mostrarAlerta = true;
+    setTimeout(() => {
+      this.cerrarAlerta();
+    }, 3000);
+  }
+  mostrarMensajeRegistroError() {
+    this.mostrarAlertaError = true;
+    setTimeout(() => {
+      this.cerrarAlerta();
+    }, 3000);
+  }
+  cerrarAlerta() {
+    this.mostrarAlerta = false;
+    this.mostrarAlertaError = false;
   }
 }

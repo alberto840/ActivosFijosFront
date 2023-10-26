@@ -2,79 +2,146 @@
 <div class="container">
     <h1>Registro de Localización Nueva</h1>
     <h4>Seleccione qué tipo de locación agregar</h4>
-    <form>
+    <form (ngSubmit)="postpais()" method="post" [formGroup]="paisForm">
+      <div class="alert" *ngIf="mostrarAlerta">
+        Se registro correctamente el item
+      </div>
+      <div class="alertE" *ngIf="mostrarAlertaError">
+        No se pudo registrar el item
+      </div>
+      <div class="alertEL" *ngIf="mostrarAlertaErrorElegir">
+        Debe escoger un item al cual asignar ej. Pais -> Departamento
+      </div>
       <div class="row mb-3">
         <div class="col-md-6">
           <label for="pais">País</label>
-          <select class="form-select" id="pais">
-            <!-- Opciones para el campo País -->
-            <option>País 1</option>
-            <option>País 2</option>
-            <!-- Agrega más opciones si es necesario -->
+          <select class="form-select" id="id" formControlName="id" [(ngModel)]="selectedCountry" (change)="onCountryChange()">
+            <option *ngFor="let pais of paises" [value]="pais.id">{{ pais.pais_nombre }}</option>
           </select>
         </div>
         <div class="col-md-6">
-            <label for="departamento-area">Departamento (Área)</label>
-            <select class="form-select" id="departamento-area">
-              <!-- Opciones para el campo Departamento (Área) -->
-              <option>Área 1</option>
-              <option>Área 2</option>
-              <!-- Agrega más opciones si es necesario -->
-            </select>
+          <label for="pais">Ingrese nombre de país:</label>
+          <input id="pais" name="pais" class="form-control" id="pais_nombre" formControlName="pais_nombre" type="text">
+          <div class="row py-3">
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-primary">Registrar Pais</button>
+            </div>
           </div>
-      </div>
-      <div class="row mb-3">
-        <div class="col-md-6">
-            <label for="departamento">Departamento</label>
-            <select class="form-select" id="departamento">
-              <!-- Opciones para el campo Departamento -->
-              <option>Departamento 1</option>
-              <option>Departamento 2</option>
-              <!-- Agrega más opciones si es necesario -->
-            </select>
-        </div>
-        <div class="col-md-6">
-            <label for="bloque">Bloque</label>
-            <select class="form-select" id="bloque">
-              <!-- Opciones para el campo Bloque -->
-              <option>Bloque 1</option>
-              <option>Bloque 2</option>
-              <!-- Agrega más opciones si es necesario -->
-            </select>
-          </div>
-      </div>
-      <div class="row mb-3">
-        <div class="col-md-6">
-            <label for="municipio">Municipio</label>
-          <select class="form-select" id="municipio">
-            <!-- Opciones para el campo Municipio -->
-            <option>Municipio 1</option>
-            <option>Municipio 2</option>
-            <!-- Agrega más opciones si es necesario -->
-          </select>
-          
-        </div>
-        <div class="col-md-6">
-          <label for="aula">Aula</label>
-          <select class="form-select" id="aula">
-            <!-- Opciones para el campo Aula -->
-            <option>Aula 1</option>
-            <option>Aula 2</option>
-            <!-- Agrega más opciones si es necesario -->
-          </select>
-        </div>
-      </div>
-      <div class="row mb-1">
-        <div class="mb-1">
-            <label for="detalle" class="form-label">Descripcion</label>
-            <input type="text" id="detalle" name="detalle" class="form-control">
-          </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <button type="button" class="btn btn-primary">Registrar</button>
         </div>
       </div>
     </form>
+
+    <form (ngSubmit)="postdepartamento()" method="post" [formGroup]="departamentoForm">
+      <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="departamento">Departamento/Estado</label>
+            <select class="form-select" id="departamento" formControlName="id_departamento" [(ngModel)]="selectedDepartment" (change)="onDepartmentChange()">
+              <option *ngFor="let departamento of departamentosAux1" [value]="departamento.id_departamento">{{ departamento.departamento_nombre }}</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+          <label for="departamento">Ingrese nombre de departamento o estado:</label>
+          <input id="departamento" name="departamento" class="form-control" id="departamento_nombre" formControlName="departamento_nombre" type="text">
+          <div class="row py-3">
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-primary">Registrar Departamento</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <form (ngSubmit)="postprovincia()" method="post" [formGroup]="provinciaForm">
+      <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="municipio">Municipio/Ciudad</label>
+          <select class="form-select" id="municipio" formControlName="id_provincia" [(ngModel)]="selectedProvincia" (change)="onProvinciaChange()">
+            <option *ngFor="let provincia of provinciasAux1" [value]="provincia.id_provincia">{{ provincia.provincia_nombre }}</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label for="municipio">Ingrese nombre de provincia o ciudad:</label>
+          <input id="municipio" name="municipio" class="form-control" id="provincia_nombre" formControlName="provincia_nombre" type="text">
+          <div class="row py-3">
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-primary">Registrar Provincia o ciudad</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <form (ngSubmit)="postsucursal()" method="post" [formGroup]="sucursalForm">
+      <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="departamento-area">Sucursal</label>
+            <select class="form-select" id="departamento-area" formControlName="id_direccion" [(ngModel)]="selectedSucursal" (change)="onSucursalChange()">
+              <option *ngFor="let sucursal of sucursalesAux1" [value]="sucursal.id_direccion">{{ sucursal.direccion_zona +" - "+ sucursal.direccion_calle }}</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+          <label for="zona">Ingrese nombre de zona:</label>
+          <input id="zona" name="zona" class="form-control" id="direccion_zona" formControlName="direccion_zona" type="text">
+          <label for="calle">Ingrese la calle:</label>
+          <input id="calle" name="calle" class="form-control" id="direccion_calle" formControlName="direccion_calle" type="text">
+          <div class="row py-3">
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-primary">Registrar Sucursal</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <form (ngSubmit)="postbloque()" method="post" [formGroup]="bloqueForm">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="bloque">Bloque/Edificio</label>
+          <select class="form-select" id="bloque" formControlName="id_bloque" [(ngModel)]="selectedBloque" (change)="onBloqueChange()">
+            <option *ngFor="let bloque of bloquesAux1" [value]="bloque.id_bloque">{{ bloque.bloque_nombre }}</option>
+          </select>
+      </div>
+        <div class="col-md-6">
+          <label for="bloque">Ingrese nombre de bloque o edificio:</label>
+          <input id="bloque" name="bloque" class="form-control" id="bloque_nombre" formControlName="bloque_nombre" type="text">
+          <div class="row py-3">
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-primary">Registrar Bloque</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <form (ngSubmit)="postaula()" method="post" [formGroup]="aulaForm">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="aula">Aula/Oficina</label>
+          <select class="form-select" id="aula">
+            <option *ngFor="let aula of aulasAux1" [value]="aula.id_aula">{{ aula.aula_nombre }}</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label for="aula">Ingrese nombre de aula u oficina:</label>
+          <input id="aula" name="aula" class="form-control" id="aula_nombre" formControlName="aula_nombre" type="text">
+          <div class="row py-3">
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-primary">Registrar Aula</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert" *ngIf="mostrarAlerta">
+        Se registro correctamente el item
+      </div>
+      <div class="alertE" *ngIf="mostrarAlertaError">
+        No se pudo registrar el item
+      </div>
+      <div class="alertEL" *ngIf="mostrarAlertaErrorElegir">
+        Debe escoger un item al cual asignar ej. Pais -> Departamento
+      </div>
+
+    </form>
+
   </div>
-  

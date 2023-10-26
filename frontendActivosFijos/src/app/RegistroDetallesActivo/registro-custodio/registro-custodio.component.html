@@ -17,11 +17,11 @@
           </div>
           <div class="mb-3 form-group">
             <label for="telefono" class="form-label">Telefono</label>
-            <input type="telefono" class="form-control" id="telefono" name="telefono" formControlName="custodio_telefono" required>
+            <input type="text" class="form-control" id="telefono" name="telefono" formControlName="custodio_telefono" required>
           </div>
           <div class="mb-3 form-group">
             <label for="correo" class="form-label">Correo</label>
-            <input type="email" class="form-control" id="correo" name="correo" formControlName="custodio_correo" required>
+            <input type="text" class="form-control" id="correo" name="correo" formControlName="custodio_correo" required>
           </div>
           <div class="mb-3 form-group">
             <label for="estado" class="form-label">Estado</label>
@@ -29,6 +29,12 @@
               <option value="activo">Activo</option>
               <option value="inactivo">Inactivo</option>
             </select>
+          </div>
+          <div class="alert" *ngIf="mostrarAlerta">
+            Se registro correctamente el item
+          </div>
+          <div class="alertE" *ngIf="mostrarAlertaError">
+            No se pudo registrar el item
           </div>
           <button type="submit" class="btn btn-primary">Registrar</button>
         </form>

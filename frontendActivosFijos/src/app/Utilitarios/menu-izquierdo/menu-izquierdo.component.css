@@ -6,3 +6,14 @@
 .navbar-text {
     font-size: 1.5rem; /* Ajusta el tamaño de fuente del texto según tus necesidades */
 }
+
+.a-content{
+  max-height: max-content;
+
+}
+
+.b-content {
+  max-height: 650px; /* Ajusta esto según tus necesidades */
+  overflow-y: auto;
+}
+

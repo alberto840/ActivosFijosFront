@@ -16,10 +16,13 @@
           BIENVENIDO A UCB Activos
         </div>
         <div class="card-body">
+          <div class="alertE" *ngIf="mostrarAlertaError">
+            No se pudo iniciar sesion - intente de nuevo
+          </div>
           <form (ngSubmit)="submitForm()" method="post">
             <div class="mb-3 form-group">
               <label for="email" class="form-label">Correo Registrado</label>
-              <input type="email" class="form-control" id="email" name="email" [(ngModel)]="username" placeholder="Ingresar Correo" required>
+              <input type="email" class="form-control" id="email" name="email" [(ngModel)]="username" placeholder="Ingresar Correo" required="Ingrese username">
             </div>
             <div class="mb-3 form-group">
               <label for="password" class="form-label">Contraseña</label>

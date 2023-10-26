@@ -1,3 +1,4 @@
+import { Pais } from './../../Models/pais';
 import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -28,11 +29,11 @@ export class RegistroCustodioComponent implements OnInit{
         this.custodioList = response;
 
         // Manejar la respuesta de éxito aquí
-        console.log('Registros de marcas mostradas', response);
+        console.log('Registros de custodios', response);
       },
       error => {
         // Manejar el error aquí
-        console.error('Error al mostrar las marcas', error);
+        console.error('Error al mostrar custodios', error);
       }
     )
   }
@@ -41,11 +42,31 @@ export class RegistroCustodioComponent implements OnInit{
       response => {
         // Manejar la respuesta de éxito aquí
         console.log('Custodio creado exitosamente', response);
+        this.mostrarMensajeRegistroExito();
       },
       error => {
         // Manejar el error aquí
         console.error('Error al crear custodio', error);
+        this.mostrarMensajeRegistroError();
       }
       )
+  }
+  mostrarAlerta = false;
+  mostrarAlertaError = false;
+  mostrarMensajeRegistroExito() {
+    this.mostrarAlerta = true;
+    setTimeout(() => {
+      this.cerrarAlerta();
+    }, 3000);
+  }
+  mostrarMensajeRegistroError() {
+    this.mostrarAlertaError = true;
+    setTimeout(() => {
+      this.cerrarAlerta();
+    }, 3000);
+  }
+  cerrarAlerta() {
+    this.mostrarAlerta = false;
+    this.mostrarAlertaError = false;
   }
 }

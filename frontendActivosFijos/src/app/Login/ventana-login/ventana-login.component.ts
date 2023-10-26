@@ -34,6 +34,7 @@ export class VentanaLoginComponent implements OnInit {
 
   users!: any;
   rol: String='';
+  mostrarAlertaError = false;
   constructor(private router: Router, public fb: FormBuilder, public usuarioService: UsuarioService){}
 
   submitForm(){
@@ -64,6 +65,20 @@ export class VentanaLoginComponent implements OnInit {
       }
 
 
-    }else{console.log("no existe cuenta");}
+    }else{
+      console.log("no existe cuenta");
+      this.mostrarMensajeError();
+    }
+  }
+
+  mostrarMensajeError() {
+    this.mostrarAlertaError = true;
+    setTimeout(() => {
+      this.cerrarAlerta();
+    }, 3000);
+  }
+
+  cerrarAlerta() {
+    this.mostrarAlertaError = false;
   }
 }

@@ -9,6 +9,12 @@
         <input type="text" class="form-control" id="marca_nombre" formControlName="marca_nombre" placeholder="Nombre de la Marca">
       </div>
       <button type="submit" class="btn btn-primary">Registrar</button>
+      <div class="alert" *ngIf="mostrarAlerta">
+        Se registro correctamente el item
+      </div>
+      <div class="alertE" *ngIf="mostrarAlertaError">
+        No se pudo registrar el item
+      </div>
     </div>
     </form>
     <div class="col-md-6">

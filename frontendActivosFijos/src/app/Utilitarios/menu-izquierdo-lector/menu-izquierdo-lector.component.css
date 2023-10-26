@@ -1,0 +1,18 @@
+.navbar-brand img {
+  width: 50px; /* Ajusta el ancho de la imagen según tus necesidades */
+  height: 50px; /* Ajusta la altura de la imagen según tus necesidades */
+}
+
+.navbar-text {
+  font-size: 1.5rem; /* Ajusta el tamaño de fuente del texto según tus necesidades */
+}
+
+.a-content{
+  max-height: max-content;
+}
+
+.b-content {
+  max-height: 650px; /* Ajusta esto según tus necesidades */
+  overflow-y: auto;
+}
+
