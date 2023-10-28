@@ -50,6 +50,20 @@ export class RegistroCustodioComponent implements OnInit{
         this.mostrarMensajeRegistroError();
       }
       )
+      setTimeout(() => {
+          this.custodioService.getAllCustodios().subscribe(
+            response => {
+              this.custodioList = response;
+      
+              // Manejar la respuesta de éxito aquí
+              console.log('Registros de custodios', response);
+            },
+            error => {
+              // Manejar el error aquí
+              console.error('Error al mostrar custodios', error);
+            }
+          )
+        }, 500);
   }
   mostrarAlerta = false;
   mostrarAlertaError = false;

@@ -30,6 +30,8 @@ import { InicioUserActualizadorComponent } from './InicioUsers/inicio-user-actua
 import { MenuIzquierdoEditorComponent } from './Utilitarios/menu-izquierdo-editor/menu-izquierdo-editor.component';
 import { MenuIzquierdoLectorComponent } from './Utilitarios/menu-izquierdo-lector/menu-izquierdo-lector.component';
 import { LectorDetalleActivoComponent } from './DetalleActivo/lector-detalle-activo/lector-detalle-activo.component';
+import { DatosAdquisicionComponent } from './RegistroActivo/datos-adquisicion/datos-adquisicion.component';
+import { FilterPipe } from './filterpipe/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { LectorDetalleActivoComponent } from './DetalleActivo/lector-detalle-act
     VentanaLoginComponent,
     TablaGeneralComponent,
     ListaActivosAdminComponent,
-    LectorDetalleActivoComponent
+    LectorDetalleActivoComponent,
+    DatosAdquisicionComponent,
+    FilterPipe
   ],
   imports: [
     FormsModule,

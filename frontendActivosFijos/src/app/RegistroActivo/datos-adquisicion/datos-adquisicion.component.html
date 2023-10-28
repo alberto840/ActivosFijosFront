@@ -2,104 +2,105 @@
     <div class="col-lg-3">
       <div class="form-container">
         <h2>Registro de Activo</h2>
-        <form >
+        <form [formGroup]="activoForm" (ngSubmit)="registrarActivo()">
           <div class="mb-3">
             <label for="nombreActivo" class="form-label">Nombre del Activo:</label>
-            <input type="text" id="nombreActivo" name="nombreActivo" class="form-control" >
+            <input type="text" id="activo_nombre" name="activo_nombre" class="form-control" formControlName="activo_nombre">
           </div>
           <div class="mb-3">
             <label for="fechaAdquisicion" class="form-label">Fecha de Adquisición:</label>
-            <input type="date" id="fechaAdquisicion" name="fechaAdquisicion" class="form-control" >
+            <input type="date" id="activo_fecha" name="activo_fecha" class="form-control" formControlName="activo_fecha">
           </div>
           <div class="mb-3">
-            <label for="categoria" class="form-label">Categoría:</label>
-            <input type="text" id="categoria" name="categoria" class="form-control" >
+            <label for="categoriaActivo">Selecciona una categoría de activo:</label>
+            <select class="form-control" id="activo_categoria" formControlName="activo_categoria">
+              <option *ngFor="let categoria of categoriasActivos" [value]="categoria.id">
+                {{ categoria.nombre }}
+              </option>
+            </select>
           </div>
           <div class="mb-3">
-            <label for="marca" class="form-label">Marca:</label>
-            <input type="text" id="marca" name="marca" class="form-control" >
+            <label fors="marca" class="form-label">Marca:</label>
+            <select class="form-control" id="activo_categoria" formControlName="marca_id_marca">
+              <option *ngFor="let marca of marcasList" [value]="marca.id_marca">
+                {{ marca.marca_nombre }}
+              </option>
+            </select>
           </div>
           <div class="mb-3">
             <label for="comprobanteAdquisicion" class="form-label">Comprobante de Adquisición:</label>
-            <input type="file" id="comprobanteAdquisicion" name="comprobanteAdquisicion" class="form-control" >
+            <input type="text" id="activo_comprobante" name="activo_comprobante" class="form-control" formControlName="activo_comprobante">
           </div>
+          <div class="mb-3">
+            <label for="pais">País</label>
+            <select class="form-select" id="id" formControlName="pais_id_pais" [(ngModel)]="selectedCountry" (change)="onCountryChange()">
+              <option *ngFor="let pais of paises" [value]="pais.id">{{ pais.pais_nombre }}</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="departamento">Departamento/Estado</label>
+            <select class="form-select" id="departamento" formControlName="departamento_id_departamento" [(ngModel)]="selectedDepartment" (change)="onDepartmentChange()">
+              <option *ngFor="let departamento of departamentosAux1" [value]="departamento.id_departamento">{{ departamento.departamento_nombre }}</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="municipio">Municipio/Ciudad</label>
+            <select class="form-select" id="municipio" formControlName="provincia_id_provincia" [(ngModel)]="selectedProvincia" (change)="onProvinciaChange()">
+              <option *ngFor="let provincia of provinciasAux1" [value]="provincia.id_provincia">{{ provincia.provincia_nombre }}</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="departamento-area">Sucursal</label>
+            <select class="form-select" id="departamento-area" formControlName="direccion_id_direccion" [(ngModel)]="selectedSucursal" (change)="onSucursalChange()">
+              <option *ngFor="let sucursal of sucursalesAux1" [value]="sucursal.id_direccion">{{ sucursal.direccion_zona +" - "+ sucursal.direccion_calle }}</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="bloque">Bloque/Edificio</label>
+            <select class="form-select" id="bloque" formControlName="bloque_id_bloque" [(ngModel)]="selectedBloque" (change)="onBloqueChange()">
+              <option *ngFor="let bloque of bloquesAux1" [value]="bloque.id_bloque">{{ bloque.bloque_nombre }}</option>
+            </select>
+          </div>          
+          <div class="mb-3">
+            <label for="aula">Aula/Oficina</label>
+            <select class="form-select" id="aula" formControlName="aula_id_aula" [(ngModel)]="selectedAula">
+              <option *ngFor="let aula of aulasAux1" [value]="aula.id_aula">{{ aula.aula_nombre }}</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="nombreActivo" class="form-label">Valor de Adquisición:</label>
+            <input type="number" id="activo_nombre" name="activo_nombre" class="form-control" formControlName="activo_valor_actual">
+          </div>
+          <div class="mb-3">
+            <label for="aula">Custodio:</label>
+            <select class="form-select" id="aula" formControlName="custodio_id_custodio" [(ngModel)]="selectedCustodio">
+              <option *ngFor="let custodio of custodios" [value]="custodio.id_custodio">{{ custodio.custodio_nombre+" "+custodio.custodio_apellido_paterno+" "+custodio.custodio_apellido_paterno }}</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="aula">Estado:</label>
+            <select class="form-select" id="aula" formControlName="activo_estado">
+              <option value="activo">Activo</option>
+              <option value="inactivo">Inactivo</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="categoriaActivo">Selecciona el estado de uso del activo:</label>
+            <select class="form-control" id="activo_estado" formControlName="activo_estado">
+              <option *ngFor="let estado of estadosActivos" [value]="estado.id">
+                {{ estado.nombre }}
+              </option>
+            </select>
+          </div>
+          <div class="alert" *ngIf="mostrarAlerta">
+            Se registro correctamente el activo
+          </div>
+          <div class="alertE" *ngIf="mostrarAlertaError">
+            No se pudo registrar el activo
+          </div>
+          <button type="submit" class="btn btn-primary">Registrar</button>
         </form>
       </div>
     </div>
-
-    <div class="col-lg-5">
-        <div class="form-container">
-          <br><br>
-          <div class="row">
-            <div class="col-lg-4">
-              <form >
-                <div class="mb-3">
-                  <label for="pais" class="form-label">País:</label>
-                  <input type="text" id="pais" name="pais" class="form-control">
-                </div>
-                <div class="mb-3">
-                  <label for="departamento" class="form-label">Departamento:</label>
-                  <input type="text" id="departamento" name="departamento" class="form-control">
-                </div>
-                <div class="mb-3">
-                  <label for="municipio" class="form-label">Municipio:</label>
-                  <input type="text" id="municipio" name="municipio" class="form-control">
-                </div>
-              </form>
-            </div>
-            <div class="col-lg-4">
-              <form >
-                <div class="mb-3">
-                  <label for="departamento2" class="form-label">Departamento:</label>
-                  <input type="text" id="departamento2" name="departamento2" class="form-control">
-                </div>
-                <div class="mb-3">
-                  <label for="bloque" class="form-label">Bloque:</label>
-                  <input type="text" id="bloque" name="bloque" class="form-control">
-                </div>
-                <div class="mb-3">
-                  <label for="aula" class="form-label">Aula:</label>
-                  <input type="text" id="aula" name="aula" class="form-control">
-                </div>
-              </form>
-            </div>
-            <div class="col-lg-4">
-              <form >
-                <div class="mb-3">
-                  <label for="detalle" class="form-label">Detalle:</label>
-                  <input type="text" id="detalle" name="detalle" class="form-control">
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <!-- Formulario Adicional -->
-        <div class="row">
-            <div class="col-lg-4">
-              <form >
-                <div class="mb-3">
-                  <label for="valorAdquisicion" class="form-label">Valor de Adquisición:</label>
-                  <input type="text" id="valorAdquisicion" name="valorAdquisicion" class="form-control">
-                </div>
-              </form>
-            </div>
-            <div class="col-lg-4">
-              <form >
-                <div class="mb-3">
-                  <label for="estadoUso" class="form-label">Estado de Uso:</label>
-                  <input type="text" id="estadoUso" name="estadoUso" class="form-control">
-                </div>
-              </form>
-            </div>
-            <div class="col-lg-4">
-              <form >
-                <div class="mb-3">
-                  <label for="grupo" class="form-label">Grupo:</label>
-                  <input type="text" id="grupo" name="grupo" class="form-control">
-                </div>
-                <button type="submit" class="btn btn-primary">Registrar</button>
-              </form>
-            </div>
-  </div>
 </div>
 

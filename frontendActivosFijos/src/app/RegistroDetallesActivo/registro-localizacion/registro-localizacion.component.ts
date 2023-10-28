@@ -302,6 +302,9 @@ export class RegistroLocalizacionComponent implements OnInit {
         this.mostrarMensajeRegistroError();
       }
     )
+    setTimeout(() => {
+        this.getpais();
+      }, 2000);
   }
   postdepartamento(){
     if(this.selectedCountry!=null){
@@ -318,6 +321,9 @@ export class RegistroLocalizacionComponent implements OnInit {
           this.mostrarMensajeRegistroError();
         }
       )
+      setTimeout(() => {
+        this.getdepartamento();
+      }, 2000);
     }else{
       this.mostrarMensajeElegirError();
     }
@@ -337,6 +343,9 @@ export class RegistroLocalizacionComponent implements OnInit {
           this.mostrarMensajeRegistroError();
         }
       )
+      setTimeout(() => {
+        this.getprovincia();
+      }, 2000);
     }else{
       this.mostrarMensajeElegirError();
     }
@@ -356,6 +365,9 @@ export class RegistroLocalizacionComponent implements OnInit {
           this.mostrarMensajeRegistroError();
         }
       )
+      setTimeout(() => {
+        this.getsucursal();
+      }, 2000);
     }else{
       this.mostrarMensajeElegirError();
     }
@@ -376,6 +388,9 @@ export class RegistroLocalizacionComponent implements OnInit {
           this.mostrarMensajeRegistroError();
         }
       )
+      setTimeout(() => {
+        this.getbloque();
+      }, 2000);
     }else{
       this.mostrarMensajeElegirError();
     }
@@ -395,6 +410,9 @@ export class RegistroLocalizacionComponent implements OnInit {
           this.mostrarMensajeRegistroError();
         }
       )
+      setTimeout(() => {
+        this.getaula();
+      }, 2000);
     }else{
       this.mostrarMensajeElegirError();
     }

@@ -44,6 +44,20 @@ export class RegistroMarcaComponent implements OnInit{
         this.mostrarMensajeRegistroError();
       }
       )
+      setTimeout(() => {
+          this.marcasService.getAllMarcas().subscribe(
+            response => {
+              this.marcasList = response;
+      
+              // Manejar la respuesta de éxito aquí
+              console.log('Registros de marcas mostradas', response);
+            },
+            error => {
+              // Manejar el error aquí
+              console.error('Error al mostrar las marcas', error);
+            }
+          )
+        }, 500);
   }
   mostrarAlerta = false;
   mostrarAlertaError = false;

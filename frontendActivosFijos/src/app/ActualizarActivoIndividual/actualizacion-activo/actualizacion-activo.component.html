@@ -1,5 +1,20 @@
 <div class="container">
     <h1>Actualizar activos individuales</h1>
+    <!--  -->
+    <div class="container">
+        <h1>Buscar Activos</h1>
+        <input type="text" class="form-control" [(ngModel)]="filtroBusqueda" placeholder="Buscar activos" (input)="filtrarActivos()">
+      
+        <ul class="list-group mt-3" *ngIf="activosFiltrados.length > 0">
+          <li class="list-group-item" *ngFor="let activo of activosFiltrados">
+            {{ activo.activo_nombre }}
+            <button class="btn btn-primary" (click)="seleccionarActivo(activo)">Seleccionar</button>
+          </li>
+        </ul>
+    </div>
+      
+    <!--  -->
+      
     <div class="container text-center">
         <div class="row">
             <div class="col-4">
@@ -16,22 +31,22 @@
                     <div class="container">
                         <mat-card-title>ID:</mat-card-title>
                         <mat-card-content>
-                            <p>445664-mds</p>
+                            <p>{{ activoSeleccionado.id_activo }}</p>
                         </mat-card-content>
                     
                         <mat-card-title>Nombre activo:</mat-card-title>
                         <mat-card-content>
-                            <p>Mesa cafe xr34</p>
+                            <p>{{ activoSeleccionado.activo_nombre }}</p>
                         </mat-card-content>
         
                         <mat-card-title>Nombre grupo:</mat-card-title>
-                        <mat-card-content><p>Mesas madera</p></mat-card-content>
+                        <mat-card-content><p>{{ auxGrupo }}</p></mat-card-content>
                             
                         <mat-card-title>
                             Custodio:  
                         </mat-card-title>
                         <mat-card-content>
-                            <p>Bernardo Duran</p>
+                            <p>{{ auxCustodio }}</p>
                         </mat-card-content>
                         
                         <mat-card-title>
