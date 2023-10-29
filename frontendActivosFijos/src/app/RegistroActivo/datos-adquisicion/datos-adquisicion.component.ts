@@ -12,6 +12,7 @@ import { Sucursal } from 'src/app/Models/sucursal';
 import { ActivoService } from 'src/app/Services/Activos/activo.service';
 import { CustodioService } from 'src/app/Services/Custodio/custodio.service';
 import { GrupoActivoService } from 'src/app/Services/GrupoActivo/grupo-activo.service';
+import { HistorialActivoService } from 'src/app/Services/HistorialActivo/historial-activo.service';
 import { MarcasService } from 'src/app/Services/Marcas/marcas.service';
 import { AulaService } from 'src/app/Services/UbicacionServices/Aula/aula.service';
 import { BloqueService } from 'src/app/Services/UbicacionServices/Bloque/bloque.service';
@@ -28,6 +29,7 @@ import { SucursalService } from 'src/app/Services/UbicacionServices/Sucursal/suc
 export class DatosAdquisicionComponent implements OnInit {
   activoForm!: FormGroup;
   grupoActivoForm!: FormGroup;
+  histrialActivoForm!: FormGroup;
   marcaForm!: FormGroup;
   marcasList!: Marca[];
   paises!: Pais[];
@@ -58,7 +60,7 @@ export class DatosAdquisicionComponent implements OnInit {
   selectedCustodio?: number;
 
   auxNombre?: string;
-
+  auxIdActivo?: string;
   onCountryChange() {
     this.departamentosAux1= [];
     setTimeout(() => {
@@ -165,7 +167,7 @@ export class DatosAdquisicionComponent implements OnInit {
 
   }
 
-  constructor(private router: Router, public fb: FormBuilder, public marcasService: MarcasService, public activoService: ActivoService, private paisService: PaisService,private departamentoService: DepartamentoService, private provinciaSerivce: ProvinciaService, private sucursalService: SucursalService, private bloqueService: BloqueService, private aulaService: AulaService, private custodioService: CustodioService, private grupoActivoService: GrupoActivoService) {}
+  constructor(private router: Router, public fb: FormBuilder, public marcasService: MarcasService,public historialService: HistorialActivoService, public activoService: ActivoService, private paisService: PaisService,private departamentoService: DepartamentoService, private provinciaSerivce: ProvinciaService, private sucursalService: SucursalService, private bloqueService: BloqueService, private aulaService: AulaService, private custodioService: CustodioService, private grupoActivoService: GrupoActivoService) {}
   ngOnInit(): void {
     this.activoForm = this.fb.group({
       id_activo : ['', Validators.required],
@@ -185,6 +187,32 @@ export class DatosAdquisicionComponent implements OnInit {
       custodio_id_custodio : ['', Validators.required],
       activo_detalle : ['', Validators.required],
       activo_estado : ['', Validators.required],
+      activo_estado_uso : ['', Validators.required],
+      grupo_id_grupo : ['', Validators.required],
+    })
+    this.histrialActivoForm = this.fb.group({
+      id_historial : ['', Validators.required],
+      activo_id_activo : ['', Validators.required],
+      activo_fecha_historial : ['', Validators.required],
+      usuario_historial : ['', Validators.required],
+      valor_historial : ['', Validators.required],
+      activo_nombre : ['', Validators.required],
+      activo_fecha : ['', Validators.required],
+      activo_categoria : ['', Validators.required],
+      marca_id_marca : ['', Validators.required],
+      activo_comprobante : ['', Validators.required],
+      pais_id_pais : ['', Validators.required],
+      departamento_id_departamento : ['', Validators.required],
+      provincia_id_provincia : ['', Validators.required],
+      direccion_id_direccion : ['', Validators.required],
+      bloque_id_bloque : ['', Validators.required],
+      aula_id_aula : ['', Validators.required],
+      activo_valor_inicial : ['', Validators.required],
+      activo_valor_actual : ['', Validators.required],
+      custodio_id_custodio : ['', Validators.required],
+      activo_detalle : ['', Validators.required],
+      activo_estado : ['', Validators.required],
+      activo_estado_uso : ['', Validators.required],
       grupo_id_grupo : ['', Validators.required],
     })
     this.marcaForm = this.fb.group({
@@ -204,9 +232,12 @@ export class DatosAdquisicionComponent implements OnInit {
     this.getcustodios();
   }
   estadosActivos: any[] = [
-    { id: 1, nombre: 'nuevo' },
-    { id: 2, nombre: 'usado' },
-    { id: 3, nombre: 'deprecado' },
+    { id: 1, nombre: 'Nuevo 6/6' },
+    { id: 2, nombre: 'Como nuevo 5/6' },
+    { id: 3, nombre: 'Usado en buen estado 4/6' },
+    { id: 3, nombre: 'Usado 3/6' },
+    { id: 3, nombre: 'Usado en mal estado 2/6' },
+    { id: 3, nombre: 'Obsoleto 1/6' }
   ];
   categoriasActivos: any[] = [
     { id: 1, nombre: 'Categoria 1' },
@@ -343,10 +374,12 @@ export class DatosAdquisicionComponent implements OnInit {
 
     setTimeout(() => {
       this.activoForm.value.grupo_id_grupo = this.auxNombre;
+      this.activoForm.value.activo_valor_inicial = this.activoForm.value.activo_valor_actual;
       this.activoService.registerNewActivo(this.activoForm.value).subscribe(
         response => {
           // Manejar la respuesta de éxito aquí
           console.log('Activo creado exitosamente', response);
+          this.auxIdActivo = response.datos.id_activo;
           this.mostrarMensajeRegistroExito();
         },
         error => {
@@ -355,7 +388,43 @@ export class DatosAdquisicionComponent implements OnInit {
           this.mostrarMensajeRegistroError();
         }
         )
-      }, 2000);    
+      }, 2000);
+      setTimeout(() => {
+        this.histrialActivoForm.value.activo_id_activo = this.auxIdActivo;
+        this.histrialActivoForm.value.activo_fecha_historial = Date.now();
+        this.histrialActivoForm.value.usuario_historial = 1;
+        this.histrialActivoForm.value.valor_historial = this.activoForm.value.activo_valor_inicial;
+        this.histrialActivoForm.value.activo_nombre = this.activoForm.value.activo_nombre;
+        this.histrialActivoForm.value.activo_fecha = this.activoForm.value.activo_fecha;
+        this.histrialActivoForm.value.activo_categoria = this.activoForm.value.activo_categoria;
+        this.histrialActivoForm.value.marca_id_marca = this.activoForm.value.marca_id_marca;
+        this.histrialActivoForm.value.activo_comprobante = this.activoForm.value.activo_comprobante;
+        this.histrialActivoForm.value.pais_id_pais = this.activoForm.value.pais_id_pais;
+        this.histrialActivoForm.value.departamento_id_departamento = this.activoForm.value.departamento_id_departamento;
+        this.histrialActivoForm.value.provincia_id_provincia = this.activoForm.value.provincia_id_provincia;
+        this.histrialActivoForm.value.direccion_id_direccion = this.activoForm.value.direccion_id_direccion;
+        this.histrialActivoForm.value.bloque_id_bloque = this.activoForm.value.bloque_id_bloque;
+        this.histrialActivoForm.value.aula_id_aula = this.activoForm.value.aula_id_aula;
+        this.histrialActivoForm.value.activo_valor_inicial = this.activoForm.value.activo_valor_inicial;
+        this.histrialActivoForm.value.activo_valor_actual = this.activoForm.value.activo_valor_actual;
+        this.histrialActivoForm.value.custodio_id_custodio = this.activoForm.value.custodio_id_custodio;
+        this.histrialActivoForm.value.activo_detalle = this.activoForm.value.activo_detalle;
+        this.histrialActivoForm.value.activo_estado = this.activoForm.value.activo_estado;
+        this.histrialActivoForm.value.activo_estado_uso = this.activoForm.value.activo_estado_uso;
+        this.histrialActivoForm.value.grupo_id_grupo = this.activoForm.value.grupo_id_grupo;
+        this.historialService.registerNewGistorial(this.histrialActivoForm.value).subscribe(
+          response => {
+            // Manejar la respuesta de éxito aquí
+            console.log('Registro creado exitosamente', response);
+            this.mostrarMensajeRegistroExito();
+          },
+          error => {
+            // Manejar el error aquí
+            console.error('Error al crear registro', error);
+            this.mostrarMensajeRegistroError();
+          }
+          )
+        }, 4000);     
   }
   mostrarAlerta = false;
   mostrarAlertaError = false;

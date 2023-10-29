@@ -1,5 +1,9 @@
-export class Activo {
-    id_activo: number;
+export class Historial {
+    id_historial: number;    
+    activo_id_activo: number; 
+    activo_fecha_historial: Date;
+    usuario_historial: number;
+    valor_historial: number;
     activo_nombre: string;
     activo_fecha: Date;
     activo_categoria: number;
@@ -20,7 +24,11 @@ export class Activo {
     grupo_id_grupo: number;
 
     constructor(
-        id_activo: number,
+        id_historial: number,    
+        activo_id_activo: number, 
+        activo_fecha_historial: Date,
+        usuario_historial: number,
+        valor_historial: number,
         activo_nombre: string,
         activo_fecha: Date,
         activo_categoria: number,
@@ -40,7 +48,11 @@ export class Activo {
         activo_estado_uso: string,
         grupo_id_grupo: number
       ) {
-        this.id_activo = id_activo;
+        this.id_historial = id_historial;
+        this.activo_id_activo = activo_id_activo;
+        this.activo_fecha_historial = activo_fecha_historial;
+        this.usuario_historial = usuario_historial;
+        this.valor_historial = valor_historial;
         this.activo_nombre = activo_nombre; 
         this.activo_fecha = activo_fecha;
         this.activo_categoria = activo_categoria;

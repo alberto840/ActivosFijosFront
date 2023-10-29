@@ -85,9 +85,9 @@
             </select>
           </div>
           <div class="mb-3">
-            <label for="categoriaActivo">Selecciona el estado de uso del activo:</label>
-            <select class="form-control" id="activo_estado" formControlName="activo_estado">
-              <option *ngFor="let estado of estadosActivos" [value]="estado.id">
+            <label for="estadoActivo">Selecciona el estado de uso del activo:</label>
+            <select class="form-control" id="activo_estado_uso" formControlName="activo_estado_uso">
+              <option *ngFor="let estado of estadosActivos" [value]="estado.nombre">
                 {{ estado.nombre }}
               </option>
             </select>

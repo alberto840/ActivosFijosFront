@@ -1,0 +1,56 @@
+.grid-container {
+    margin: 20px;
+  }
+  
+  .dashboard-card {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+  }
+  
+  .more-button {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+  }
+  
+  .dashboard-card-content {
+    text-align: center;
+  }
+  
+  :host {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .demo-section + .demo-section {
+    margin-top: 16px;
+  }
+  .example-container mat-form-field + mat-form-field {
+    margin-left: 8px;
+  }
+  .form-container{
+    background-color: #F0F8FF;
+  }
+  table {
+    width: 100%;
+  }
+  .conte-boton{
+    margin-right: 10px;
+  }
+  .alert {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    text-align: center;
+  }
+  
+  .alertE {
+    background-color: rgb(168, 30, 30);
+    color: white;
+    padding: 15px;
+    text-align: center;
+  }
