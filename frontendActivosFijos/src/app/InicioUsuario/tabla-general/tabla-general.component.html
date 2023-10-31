@@ -33,29 +33,28 @@
       <table class="table">
         <thead>
         <tr>
-          <th>Nombre de Grupo de Activos + Marca</th>
-          <th>Modelo</th>
-          <th>ID Activo</th>
+          <th>Nombre grupo</th>
+          <th>ID Activo individual</th>
+          <th>Nombre de Activo individual</th>
+          <th>Marca</th>          
           <th>Valor Actual</th>
           <th>Categoría</th>
           <th>Custodio</th>
           <th>Dirección de Activo</th>
-          <th></th> <!-- Columna vacía para Datos de Registro Inicial -->
-          <th>Seleccionar</th> <!-- Columna para checkbox -->
         </tr>
         </thead>
         <tbody>
         <!-- Agrega filas con datos dinámicos desde tu backend -->
-        <tr *ngFor="let element of registrosActivos">
+        <tr *ngFor="let element of activosList; let i = index">
+          <td>{{grupoAux1[i]}}</td>
+          <td>{{element.id_activo}}</td>
           <td>{{element.activo_nombre}}</td>
-          <td>{{element.activo_marca}}</td>
-          <td>{{element.activo_id}}</td>
-          <td>{{element.activo_valor}}</td>
+          <td>{{marcaAux1[i]}}</td>          
+          <td>{{element.activo_valor_actual}}</td>
           <td>{{element.activo_categoria}}</td>
-          <td>{{element.activo_custodio}}</td>
-          <td>{{element.activo_direccion}}</td>
-          <td><a href="#">Datos Registro Inicial</a></td>
-          <td><input type="checkbox"></td>
+          <td>{{ custodioAux1[i] }}</td>
+          <td>{{ paisesAux1[1] + ", " + departamentosAux1[1] + ", " + provinciasAux1[i] + ", " + sucursalesAux1[i] + ", " + bloquesAux1[i] + ", " + aulasAux1[i]}}</td>
+          <!-- <td><a href="#">Datos Registro Inicial</a></td> -->
         </tr>
         <!-- Repite esta estructura para cada fila de datos -->
         </tbody>
