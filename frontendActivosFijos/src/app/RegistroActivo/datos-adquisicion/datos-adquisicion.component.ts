@@ -239,10 +239,38 @@ export class DatosAdquisicionComponent implements OnInit {
     { id: 3, nombre: 'Usado en mal estado 2/6' },
     { id: 3, nombre: 'Obsoleto 1/6' }
   ];
-  categoriasActivos: any[] = [
-    { id: 1, nombre: 'Categoria 1' },
-    { id: 2, nombre: 'Categoria 2' },
-    { id: 3, nombre: 'Categoria 3' },
+  categoriasActivos: { id: number, nombre: string, tiempoVida: number, coeficienteAnual: number}[] = [
+    { id: 1, nombre: 'Edificaciones', tiempoVida: 40, coeficienteAnual: 2.5},
+    { id: 2, nombre: 'Muebles y enseres de oficina', tiempoVida: 10, coeficienteAnual: 10.0},
+    { id: 3, nombre: 'Maquinaria en general', tiempoVida: 8, coeficienteAnual: 12.5},
+    { id: 4, nombre: 'Equipos e instalaciones', tiempoVida: 8, coeficienteAnual: 12.5},
+    { id: 5, nombre: 'Barcos y lanchas en general', tiempoVida: 10, coeficienteAnual: 10.0},
+    { id: 6, nombre: 'Vehículos automotores', tiempoVida: 5, coeficienteAnual: 20.0},
+    { id: 7, nombre: 'Aviones', tiempoVida: 5, coeficienteAnual: 20.0},
+    { id: 8, nombre: 'Maquinaria para la construcción', tiempoVida: 5, coeficienteAnual: 20.0},
+    { id: 9, nombre: 'Maquinaria agrícola', tiempoVida: 4, coeficienteAnual: 25.0},
+    { id: 10, nombre: 'Animales de trabajo', tiempoVida: 4, coeficienteAnual: 25.0},
+    { id: 11, nombre: 'Herramientas en general', tiempoVida: 4, coeficienteAnual: 25.0},
+    { id: 12, nombre: 'Reproductores y hembras pedigree o puros por cruza', tiempoVida: 8, coeficienteAnual: 12.5},
+    { id: 13, nombre: 'Equipos de computación', tiempoVida: 4, coeficienteAnual: 25.0},
+    { id: 14, nombre: 'Canales de regadío y pozos', tiempoVida: 20, coeficienteAnual: 5},
+    { id: 15, nombre: 'Estanques, bañaderos y abrevaderos', tiempoVida: 10, coeficienteAnual: 10.0},
+    { id: 16, nombre: 'Alambrados, tranqueras y vallas', tiempoVida: 10, coeficienteAnual: 10.0},
+    { id: 17, nombre: 'Viviendas para el personal', tiempoVida: 20, coeficienteAnual: 5.0},
+    { id: 18, nombre: 'Muebles y enseres en las viviendas para el personal', tiempoVida: 10, coeficienteAnual: 10.0},
+    { id: 19, nombre: 'Silos, almacenes y galpones', tiempoVida: 20, coeficienteAnual: 5.0},
+    { id: 20, nombre: 'Tinglados y cobertizos de madera', tiempoVida: 5, coeficienteAnual: 20.0},
+    { id: 21, nombre: 'Tinglados y cobertizos de metal', tiempoVida: 10, coeficienteAnual: 10.0},
+    { id: 22, nombre: 'Instalaciones de electrificación y Telefonía rural', tiempoVida: 10, coeficienteAnual: 10.0},
+    { id: 23, nombre: 'Caminos interiores', tiempoVida: 10, coeficienteAnual: 10.0},
+    { id: 24, nombre: 'Caña de azúcar', tiempoVida: 5, coeficienteAnual: 20.0},
+    { id: 25, nombre: 'Vides', tiempoVida: 8, coeficienteAnual: 12.5},
+    { id: 26, nombre: 'Frutales', tiempoVida: 10, coeficienteAnual: 10.0},
+    { id: 27, nombre: 'Pozos Petroleros', tiempoVida: 5, coeficienteAnual: 20.0},
+    { id: 28, nombre: 'Líneas de Recolección de la industria Petrolera', tiempoVida: 5, coeficienteAnual: 20.0},
+    { id: 29, nombre: 'Equipos de campo de la industria Petrolera', tiempoVida: 8, coeficienteAnual: 12.5},
+    { id: 30, nombre: 'Plantas de Procesamiento de Industria Petrolera', tiempoVida: 8, coeficienteAnual: 12.5},
+    { id: 31, nombre: 'Ductos de la industria petrolera', tiempoVida: 10, coeficienteAnual: 10.0},
   ];
   getcustodios(){
     this.custodioService.getAllCustodios().subscribe(

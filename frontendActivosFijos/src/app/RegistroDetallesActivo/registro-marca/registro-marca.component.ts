@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { Marca } from 'src/app/Models/marca';
 import { MarcasService } from 'src/app/Services/Marcas/marcas.service';
 
 @Component({
@@ -76,5 +77,14 @@ export class RegistroMarcaComponent implements OnInit{
   cerrarAlerta() {
     this.mostrarAlerta = false;
     this.mostrarAlertaError = false;
+  }
+
+  filtroBusqueda: string = '';
+  marcasFiltrados: Marca[] = [];
+  filtrarActivos() {
+    this.marcasFiltrados = this.marcasList.filter((marca: Marca) =>
+      marca.marca_nombre.toLowerCase().includes(this.filtroBusqueda.toLowerCase()) ||
+      marca.id_marca.toString().includes(this.filtroBusqueda)
+    );
   }
 }

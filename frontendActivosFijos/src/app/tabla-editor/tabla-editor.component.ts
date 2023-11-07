@@ -23,8 +23,6 @@ import { ProvinciaService } from 'src/app/Services/UbicacionServices/Provincia/p
 import { SucursalService } from 'src/app/Services/UbicacionServices/Sucursal/sucursal.service';
 import { UsuarioService } from 'src/app/Services/Usuarios/usuario.service';
 
-
-
 export interface PeriodicElement {
   nombre: string;
   modelo: string;
@@ -44,12 +42,11 @@ const ELEMENT_DATA: PeriodicElement[] = [
 ];
 
 @Component({
-  selector: 'app-lista-activos-admin',
-  templateUrl: './lista-activos-admin.component.html',
-  styleUrls: ['./lista-activos-admin.component.css'],
-
+  selector: 'app-tabla-editor',
+  templateUrl: './tabla-editor.component.html',
+  styleUrls: ['./tabla-editor.component.css']
 })
-export class ListaActivosAdminComponent implements OnInit {
+export class TablaEditorComponent implements OnInit {
 
  
   activoForm!: FormGroup;
@@ -91,6 +88,7 @@ export class ListaActivosAdminComponent implements OnInit {
     { id: 30, nombre: 'Plantas de Procesamiento de Industria Petrolera', tiempoVida: 8, coeficienteAnual: 12.5},
     { id: 31, nombre: 'Ductos de la industria petrolera', tiempoVida: 10, coeficienteAnual: 10.0},
   ];
+  
   categoriaAux1!: string[];
   grupoList!: any[];
   grupoAux1!: string[];
@@ -117,7 +115,7 @@ export class ListaActivosAdminComponent implements OnInit {
   ngOnInit(): void {
     
     this.getactivos();
-    this.getmarca();    
+    this.getmarca();
     this.mesFaltante = [];
     this.mesTrascurrido = [];
     this.grupoAux1 = [];
@@ -140,8 +138,8 @@ export class ListaActivosAdminComponent implements OnInit {
     this.getbloque();
     this.getaula();
 
-    setTimeout(() => {     
-      this.calcularValorActual();        
+    setTimeout(() => {    
+      this.calcularValorActual();      
       this.asignargrupo();
       this.asignarcustodio();
       this.asignarmarca();
@@ -155,6 +153,7 @@ export class ListaActivosAdminComponent implements OnInit {
       this.asignarfechas();
       this.activosFiltrados = this.activosList;
     }, 2000);
+    
   }
   getmarca(){
     this.marcasService.getAllMarcas().subscribe(
@@ -533,7 +532,7 @@ export class ListaActivosAdminComponent implements OnInit {
   }
 
   filtroBusqueda: string = '';
-  activosFiltrados: any[] = this.activosList;
+  activosFiltrados: any[] = [];
   filtrarUsers() {
     this.activosFiltrados = this.activosList.filter((activo: any) =>
     activo.activo_nombre.toLowerCase().includes(this.filtroBusqueda.toLowerCase()) ||
@@ -552,36 +551,38 @@ export class ListaActivosAdminComponent implements OnInit {
     this.asignarfechas();
   }
 
-    //ACTUALIZAR VALOR ACTIVO
-    calcularValorActual(){
-      for (let i = 0; i < this.activosList.length; i++) {
-        for (let j = 0; j < this.categoriaList.length; j++) {
-          if (this.activosList[i].activo_categoria == this.categoriaList[j].id) {
-            const fecha1 = new Date(this.activosList[i].activo_fecha);
-            const fechaActual = new Date();
-            const diff = (fechaActual.getFullYear() - fecha1.getFullYear()) * 12 + (fechaActual.getMonth() - fecha1.getMonth());
-            this.activosList[i].activo_valor_actual = this.activosList[i].activo_valor_inicial - (this.activosList[i].activo_valor_inicial * (this.categoriaList[j].coeficienteAnual/(100*12)) * diff);
-            console.log("valor actual: "+this.activosList[i].activo_valor_actual);
-            //Calcular meses            
-            this.mesTrascurrido[i] = diff;
-            this.mesFaltante[i] = this.categoriaList[j].tiempoVida*12 - diff;
-          }
+  //ACTUALIZAR VALOR ACTIVO
+  calcularValorActual(){
+    this.mesTrascurrido = [];
+    this.mesFaltante = [];
+    for (let i = 0; i < this.activosList.length; i++) {
+      for (let j = 0; j < this.categoriaList.length; j++) {
+        if (this.activosList[i].activo_categoria == this.categoriaList[j].id) {
+          const fecha1 = new Date(this.activosList[i].activo_fecha);
+          const fechaActual = new Date();
+          const diff = (fechaActual.getFullYear() - fecha1.getFullYear()) * 12 + (fechaActual.getMonth() - fecha1.getMonth());
+          this.activosList[i].activo_valor_actual = this.activosList[i].activo_valor_inicial - (this.activosList[i].activo_valor_inicial * (this.categoriaList[j].coeficienteAnual/(100*12)) * diff);
+          console.log("valor actual: "+this.activosList[i].activo_valor_actual);
+          //calcular meses
+          this.mesTrascurrido[i] = diff;
+          this.mesFaltante[i] = this.categoriaList[j].tiempoVida*12 - diff;
         }
       }
-      setTimeout(() => {    
-        for(let i = 0; i < this.activosList.length; i++){
-          this.activoService.registerNewActivo(this.activosList[i]).subscribe(
-            response => {
-              // Manejar la respuesta de éxito aquí
-              console.log('Activo actualizado exitosamente: '+i, response);
-            },
-            error => {
-              // Manejar el error aquí
-              console.error('Error al actualizar el activo', error);
-            }
-          )
-        }
-      }, 2000);
     }
+    setTimeout(() => {    
+      for(let i = 0; i < this.activosList.length; i++){
+        this.activoService.registerNewActivo(this.activosList[i]).subscribe(
+          response => {
+            // Manejar la respuesta de éxito aquí
+            console.log('Activo actualizado exitosamente: '+i, response);
+          },
+          error => {
+            // Manejar el error aquí
+            console.error('Error al actualizar el activo', error);
+          }
+        )
+      }
+    }, 2000);
+  }
 
 }

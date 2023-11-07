@@ -83,4 +83,13 @@ export class RegistroCustodioComponent implements OnInit{
     this.mostrarAlerta = false;
     this.mostrarAlertaError = false;
   }
+
+  filtroBusqueda: string = '';
+  custodiosFiltrados: any[] = [];
+  filtrarCustodios() {
+    this.custodiosFiltrados = this.custodioList.filter((custodio: any) =>
+    custodio.custodio_nombre.toLowerCase().includes(this.filtroBusqueda.toLowerCase()) ||
+    custodio.id_custodio.toString().includes(this.filtroBusqueda)
+    );
+  }
 }

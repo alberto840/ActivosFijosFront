@@ -21,23 +21,13 @@
       </div>
       <div class="col">
         <mat-form-field>
-          <mat-label>Mostrar tipo</mat-label>
-          <mat-select disableRipple>
-            <mat-option value="1">Option 1</mat-option>
-            <mat-option value="2">Option 2</mat-option>
-            <mat-option value="3">Option 3</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="col">
-        <mat-form-field>
           <mat-label>Buscar</mat-label>
-          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input [(ngModel)]="filtroBusqueda" (input)="filtrarUsers()">
         </mat-form-field>
       </div>
     </div>
     <div class="container">
-      <table mat-table [dataSource]="registrosActivos" class="mat-elevation-z8">
+      <table mat-table [dataSource]="activosFiltrados" class="mat-elevation-z8">
 
         <!-- Checkbox Column -->
         <ng-container matColumnDef="select">
@@ -58,46 +48,48 @@
         </ng-container>
 
         <!-- Position Column -->
-        <ng-container matColumnDef="nombre">
-          <th mat-header-cell *matHeaderCellDef> Nombre activo/modelo </th>
-          <td mat-cell *matCellDef="let element"> {{element.activo_nombre}} </td>
+        <ng-container matColumnDef="nombre grupo">
+          <th mat-header-cell *matHeaderCellDef> Nombre grupo </th>
+          <td mat-cell *matCellDef="let element; let i = index"> {{grupoAux1[i]}} </td>
         </ng-container>
 
+        <!-- Position Column -->
+        <ng-container matColumnDef="id activo">
+          <th mat-header-cell *matHeaderCellDef> Id </th>
+          <td mat-cell *matCellDef="let element"> {{element.id_activo}} </td>
+        </ng-container>
+        <!-- Position Column -->
+        <ng-container matColumnDef="Nombre activo">
+          <th mat-header-cell *matHeaderCellDef> Nombre activo </th>
+          <td mat-cell *matCellDef="let element"> {{element.activo_nombre}} </td>
+        </ng-container>
         <!-- Name Column -->
-        <ng-container matColumnDef="modelo">
+        <ng-container matColumnDef="marca">
           <th mat-header-cell *matHeaderCellDef> Marca </th>
-          <td mat-cell *matCellDef="let element"> {{element.activo_marca}} </td>
+          <td mat-cell *matCellDef="let element; let i = index"> {{marcaAux1[i]}} </td>
         </ng-container>
 
         <!-- Weight Column -->
-        <ng-container matColumnDef="idactivo">
+        <ng-container matColumnDef="valor actual">
           <th mat-header-cell *matHeaderCellDef> ID Activo </th>
-          <td mat-cell *matCellDef="let element"> {{element.activo_id}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.activo_valor_actual}} </td>
         </ng-container>
 
         <!-- Symbol Column -->
-        <ng-container matColumnDef="valor">
-          <th mat-header-cell *matHeaderCellDef> Valor Actual </th>
-          <td mat-cell *matCellDef="let element"> {{element.activo_valor}} </td>
-        </ng-container>
         <ng-container matColumnDef="categoria">
           <th mat-header-cell *matHeaderCellDef> Categoría </th>
-          <td mat-cell *matCellDef="let element"> {{element.activo_categoria}} </td>
+          <td mat-cell *matCellDef="let element; let i = index"> {{ categoriaAux1[i] }} </td>
         </ng-container>
         <ng-container matColumnDef="custodio">
           <th mat-header-cell *matHeaderCellDef> Custodio </th>
-          <td mat-cell *matCellDef="let element"> {{element.activo_custodio}} </td>
+          <td mat-cell *matCellDef="let element; let i = index"> {{ custodioAux1[i] }} </td>
         </ng-container>
         <ng-container matColumnDef="direccion">
           <th mat-header-cell *matHeaderCellDef> Dirección del activo </th>
-          <td mat-cell *matCellDef="let element"> {{element.activo_direccion}} </td>
+          <td mat-cell *matCellDef="let element; let i = index"> {{ paisesAux1[1] + ", " + departamentosAux1[1] + ", " + provinciasAux1[i] + ", " + sucursalesAux1[i] + ", " + bloquesAux1[i] + ", " + aulasAux1[i]}} </td>
         </ng-container>
-        <ng-container matColumnDef="datos">
-          <th mat-header-cell *matHeaderCellDef> Datos </th>
-          <td mat-cell *matCellDef="let element"><a href="">Ver detalle activo</a>  </td>
-        </ng-container>
-        <ng-container matColumnDef="actualizar">
-          <th mat-header-cell *matHeaderCellDef> Actualizar</th>
+        <ng-container matColumnDef="eliminar">
+          <th mat-header-cell *matHeaderCellDef> Eliminar</th>
           <td mat-cell *matCellDef="let element"> {{element.direccion}} </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -107,8 +99,7 @@
       </table>
 
     </div>
-    <button mat-raised-button color="primary">Reporte PDF</button>
+    <button mat-raised-button color="primary" (click)="generarInforme()">Reporte PDF</button>
     <br>
-    <button mat-raised-button color="primary">Actualizar seleccionados</button>
   </mat-card>
 </div>

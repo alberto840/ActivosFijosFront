@@ -52,6 +52,17 @@ export class ListaUsuariosComponent implements OnInit{
         console.error('Error al mostrar el users', error);
       }
     )
+    setTimeout(() => {    
+      this.usersFiltrados = this.registrosUsers;
+      }, 1000);
+  }
+  filtroBusqueda: string = '';
+  usersFiltrados: any[] = this.registrosUsers;
+  filtrarUsers() {
+    this.usersFiltrados = this.registrosUsers.filter((user: any) =>
+    user.usuario_nombre.toLowerCase().includes(this.filtroBusqueda.toLowerCase()) ||
+    user.id_usuario.toString().includes(this.filtroBusqueda)
+    );
   }
 
 }

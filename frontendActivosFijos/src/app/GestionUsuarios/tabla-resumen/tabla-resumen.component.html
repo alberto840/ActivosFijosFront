@@ -1,15 +1,11 @@
 <div class="container mt-4">
   <h2>Actualizaciones y Modificaciones</h2>
-  <label for="filtro">Filtrar por:</label>
-  <select id="filtro" class="form-select">
-    <option value="opcion1">Actualización</option>
-    <option value="opcion2">Registros</option>
-    <option value="opcion3">Dar de baja</option>
-  </select>
-  <input type="text" class="form-control" placeholder="Buscar">
-  <button class="btn btn-primary" aria-label="Buscar">
-    <i class="bi bi-search"></i> Buscar
-  </button>
+        <!--  -->
+        <div class="container">
+          <h3>Buscar Actividades</h3>
+          <input type="text" class="form-control" [(ngModel)]="filtroBusqueda" placeholder="Buscar actividad o users" (input)="filtrarActivos()">
+        </div>        
+        <!--  -->
 
   <table class="table mt-4">
     <thead>
@@ -22,7 +18,7 @@
     </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of registrosActi">
+      <tr *ngFor="let item of activosFiltrados">
         <td>{{item.id_actividadesUsers}}</td>
         <td>{{item.usuario_nombre}}</td>
         <td>{{item.accion}}</td>

@@ -25,6 +25,7 @@ import { DatosAdquisicionComponent } from './RegistroActivo/datos-adquisicion/da
 import { LectorDetalleActivoComponent } from './DetalleActivo/lector-detalle-activo/lector-detalle-activo.component';
 import { MenuIzquierdoEditorComponent } from './Utilitarios/menu-izquierdo-editor/menu-izquierdo-editor.component';
 import { MenuIzquierdoLectorComponent } from './Utilitarios/menu-izquierdo-lector/menu-izquierdo-lector.component';
+import { TablaEditorComponent } from './tabla-editor/tabla-editor.component';
 
 const routes: Routes = [
   //Login
@@ -57,6 +58,7 @@ const routes: Routes = [
       { path: 'registrarDatosAdquisicion', component: DatosAdquisicionComponent },
       { path: 'actualizarActivo', component: ActualizacionActivoComponent },
       { path: 'transferenciaActivo', component: TransferenciaActivoComponent },
+      { path: 'tablaResumenEditor', component: TablaEditorComponent },
       { path: 'registroMarca', component: RegistroMarcaComponent },
       { path: 'registroCustodio', component: RegistroCustodioComponent },
       { path: 'registroUbicacion', component: RegistroLocalizacionComponent },

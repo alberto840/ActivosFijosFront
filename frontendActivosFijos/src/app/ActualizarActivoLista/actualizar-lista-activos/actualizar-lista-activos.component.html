@@ -22,10 +22,10 @@
                   <div class="form-container">
                       <mat-card-header>
                           <mat-card-title>Datos de Activo</mat-card-title>
-                              <mat-card-content>
+                              <!-- <mat-card-content>
                                   <p>17-05-2023</p>
                               </mat-card-content>
-                              <mat-card-subtitle>(Ultima actualización)</mat-card-subtitle>
+                              <mat-card-subtitle>(Ultima actualización)</mat-card-subtitle> -->
                       </mat-card-header>
                   </div>
                   <div class="container">
@@ -42,24 +42,20 @@
                       <mat-card-title>Cantidad de items:</mat-card-title>
                       <mat-card-content><p>{{ numeroActivos }}</p></mat-card-content>
                                             
-                          <div class="conte-boton">
-                              <button mat-flat-button color="primary">Ver codigo de barra</button>
-                              <br>
-                              <br>
-                              <br>
-                              <button mat-flat-button color="primary">Ver QR</button>
-                              <br>
-                              <br>
-                              <br>
-                              <button mat-flat-button color="primary">Guardar PDF</button>
-                          </div>
+                      <div class="conte-boton">
+                        <mat-card-title>
+                            Codigo QR :  
+                        </mat-card-title>
+                        <qrcode (qrCodeURL)="onChangeURL($event)" [qrdata]="myAngularxQrCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+                        <a [href]="qrCodeDownloadLink" download="qrcode">Descargar QR</a>
+                        </div>
                                    
                   </div>
               </mat-card>
           </div>
           <div class="col-8">
               <mat-card>
-                  <div class="row">
+                  <!-- <div class="row">
                       <div class="col">
                           <div class="form-container">
                               <mat-card-actions>
@@ -76,7 +72,7 @@
                               </button>
                           </mat-card-actions>
                       </div>
-                  </div>
+                  </div> -->
                   <mat-divider></mat-divider>
                   <!-- la direccion-->
               <form [formGroup]="activoForm" (ngSubmit)="registrarActivo()">
@@ -160,12 +156,17 @@
                   </div>
               </form>
                   <div class="py-5">
-                      <h3>Historial del activo</h3>
-                      <mat-table [dataSource]="historiaAux1" class="mat-elevation-z8">
+                      <h3>Activos del grupo</h3>
+                      <mat-table [dataSource]="activosGrupo" class="mat-elevation-z8">
                           <!-- Fecha Column -->
-                          <ng-container matColumnDef="fecha">
-                            <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
-                            <mat-cell *matCellDef="let element"> {{element.activo_fecha_historial}} </mat-cell>
+                          <ng-container matColumnDef="id activo">
+                            <mat-header-cell *matHeaderCellDef> Id activo </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.id_activo}} </mat-cell>
+                          </ng-container>
+                          <!-- Fecha Column -->
+                          <ng-container matColumnDef="nombre">
+                            <mat-header-cell *matHeaderCellDef> Nombre activo </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.activo_nombre}} </mat-cell>
                           </ng-container>
                         
                           <!-- Custodio Column -->
@@ -183,13 +184,7 @@
                           <!-- Valor Column -->
                           <ng-container matColumnDef="valor">
                             <mat-header-cell *matHeaderCellDef> Valor Total </mat-header-cell>
-                            <mat-cell *matCellDef="let element"> {{element.valor_historial}} </mat-cell>
-                          </ng-container>
-
-                          <!-- Valor Column -->
-                          <ng-container matColumnDef="usuario">
-                            <mat-header-cell *matHeaderCellDef> Usuario editor </mat-header-cell>
-                            <mat-cell *matCellDef="let element"> {{element.usuario_historial}} </mat-cell>
+                            <mat-cell *matCellDef="let element"> {{element.activo_valor_actual}} </mat-cell>
                           </ng-container>
 
                           <!-- Valor Column -->
@@ -197,36 +192,10 @@
                             <mat-header-cell *matHeaderCellDef> Estado de uso </mat-header-cell>
                             <mat-cell *matCellDef="let element"> {{element.activo_estado_uso}} </mat-cell>
                           </ng-container>
-
-                          <!-- Valor Column -->
-                          <ng-container matColumnDef="grupo">
-                            <mat-header-cell *matHeaderCellDef>Grupo </mat-header-cell>
-                            <mat-cell *matCellDef="let element; let i = index"> {{grupo2aux[i]}} </mat-cell>
-                          </ng-container>
                         
                           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
                       </mat-table>
-                      <!-- <table>
-                          <thead>
-                            <tr>
-                              <th>Fecha</th>
-                              <th>Custodio</th>
-                              <th>Direccion</th>
-                              <th>Valor registrado</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <ng-container *ngFor="let registro of historiaAux1; let i = index">
-                              <tr>
-                                <td>{{ registro.activo_fecha_historial }}</td>
-                                <td>{{ custodio2aux[i] }}</td>
-                                <td>{{ pais2aux[i]+', '+departamento2aux[i]+', '+provincia2aux[i]+', '+sucursal2aux[i]+', '+bloque2aux[i]+', '+aula2aux }}</td>
-                                <td>{{ registro.valor_historial }}</td>
-                              </tr>
-                            </ng-container>
-                          </tbody>
-                        </table> -->
                         
                   </div>
               </mat-card>

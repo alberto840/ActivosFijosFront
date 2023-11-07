@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Activo } from 'src/app/Models/activo';
 import { Aula } from 'src/app/Models/aula';
@@ -28,7 +29,9 @@ import { SucursalService } from 'src/app/Services/UbicacionServices/Sucursal/suc
   styleUrls: ['./actualizar-lista-activos.component.css']
 })
 export class ActualizarListaActivosComponent implements OnInit {
-
+  //qr
+  public myAngularxQrCode: string = "";
+  public qrCodeDownloadLink: SafeUrl = "";
   selectedCountry?: number;
   selectedCountryText?: string;
   selectedDepartment?: number;
@@ -255,7 +258,9 @@ export class ActualizarListaActivosComponent implements OnInit {
             }, 2000);
     }
   }
-  constructor(private router: Router, public fb: FormBuilder,public historialService: HistorialActivoService, public marcasService: MarcasService, public activoService: ActivoService, public custodioService: CustodioService, public grupoService: GrupoActivoService, private paisService: PaisService,private departamentoService: DepartamentoService, private provinciaSerivce: ProvinciaService, private sucursalService: SucursalService, private bloqueService: BloqueService, private aulaService: AulaService) {}
+  constructor(private router: Router, public fb: FormBuilder,public historialService: HistorialActivoService, public marcasService: MarcasService, public activoService: ActivoService, public custodioService: CustodioService, public grupoService: GrupoActivoService, private paisService: PaisService,private departamentoService: DepartamentoService, private provinciaSerivce: ProvinciaService, private sucursalService: SucursalService, private bloqueService: BloqueService, private aulaService: AulaService) {
+    this.myAngularxQrCode = 'QR vacio, no seleccionaste un activo';
+  }
   ngOnInit(): void {
     this.activoForm = this.fb.group({
       id_activo : ['', Validators.required],
@@ -513,6 +518,66 @@ export class ActualizarListaActivosComponent implements OnInit {
         this.numeroActivos++;
       }
     }
+    this.custodio2aux = [];
+    for(let i = 0; i < this.custodioList.length; i++){
+      for(let j = 0; j < this.activosGrupo.length; j++){
+        if(this.custodioList[i].id_custodio==this.activosGrupo[j].custodio_id_custodio){
+          this.custodio2aux[j] = this.custodioList[i].custodio_nombre;
+        }
+      }
+    }
+    this.pais2aux = [];
+    for(let i = 0; i < this.paises.length; i++){
+      for(let j = 0; j < this.activosGrupo.length; j++){
+        if(this.paises[i].id==this.activosGrupo[j].pais_id_pais){
+          this.pais2aux[j] = this.paises[i].pais_nombre;
+        }
+      }
+    }
+    this.departamento2aux = [];
+    for(let i = 0; i < this.departamentos.length; i++){
+      for(let j = 0; j < this.activosGrupo.length; j++){
+        if(this.departamentos[i].id_departamento==this.activosGrupo[j].departamento_id_departamento){
+          this.departamento2aux[j] = this.departamentos[i].departamento_nombre;
+        }
+      }
+    }
+    this.provincia2aux = [];
+    for(let i = 0; i < this.provincias.length; i++){
+      for(let j = 0; j < this.activosGrupo.length; j++){
+        if(this.provincias[i].id_provincia==this.activosGrupo[j].provincia_id_provincia){
+          this.provincia2aux[j] = this.provincias[i].provincia_nombre;
+        }
+      }
+    }
+    this.sucursal2aux = [];
+    for(let i = 0; i < this.sucursales.length; i++){
+      for(let j = 0; j < this.activosGrupo.length; j++){
+        if(this.sucursales[i].id_direccion==this.activosGrupo[j].direccion_id_direccion){
+          this.sucursal2aux[j] = this.sucursales[i].direccion_zona+", "+this.sucursales[i].direccion_calle;
+        }
+      }
+    }
+    this.bloque2aux = [];
+    for(let i = 0; i < this.bloques.length; i++){
+      for(let j = 0; j < this.activosGrupo.length; j++){
+        if(this.bloques[i].id_bloque==this.activosGrupo[j].bloque_id_bloque){
+          this.bloque2aux[j] = this.bloques[i].bloque_nombre;
+        }
+      }
+    }
+    this.aula2aux = [];
+    for(let i = 0; i < this.aulas.length; i++){
+      for(let j = 0; j < this.activosGrupo.length; j++){
+        if(this.aulas[i].id_aula==this.activosGrupo[j].aula_id_aula){
+          this.aula2aux[j] = this.aulas[i].aula_nombre;
+        }
+      }
+    }
+
+    setTimeout(() => {
+      this.myAngularxQrCode = "Nombre del grupo: "+this.grupoSeleccionado.grupo_nombre.toString()+" Id grupo: "+this.grupoSeleccionado.id_grupo.toString();
+      }, 2200);
   }
   estadosActivos: any[] = [
     { id: 1, nombre: 'Nuevo 6/6' },
@@ -526,13 +591,17 @@ export class ActualizarListaActivosComponent implements OnInit {
   activoSeleccionado: Activo = {id_activo: 0, activo_nombre: '', activo_fecha: new Date(), activo_categoria: 0, marca_id_marca: 0, activo_comprobante: '', pais_id_pais: 0, departamento_id_departamento: 0, provincia_id_provincia: 0, direccion_id_direccion: 0, bloque_id_bloque: 0, aula_id_aula: 0, activo_valor_inicial: 0, activo_valor_actual: 0, custodio_id_custodio: '', activo_detalle: '', activo_estado: '',activo_estado_uso: '', grupo_id_grupo: 0};
   grupoSeleccionado: Grupo = {id_grupo: 0, grupo_nombre: ''};
   //---------------------------------------
-  displayedColumns: string[] = ['fecha', 'custodio', 'direccion', 'valor', 'usuario', 'estado de uso', 'grupo'];
+  displayedColumns: string[] = ['id activo','nombre', 'custodio', 'direccion', 'valor', 'estado de uso'];
 
 
   hidden = false;
 
   toggleBadgeVisibility() {
     this.hidden = !this.hidden;
+  }
+
+  onChangeURL(url: SafeUrl) {
+    this.qrCodeDownloadLink = url;
   }
 
 }

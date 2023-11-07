@@ -1,5 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Activo } from 'src/app/Models/activo';
 import { Aula } from 'src/app/Models/aula';
@@ -27,6 +28,9 @@ import { SucursalService } from 'src/app/Services/UbicacionServices/Sucursal/suc
   styleUrls: ['./actualizacion-activo.component.css']
 })
 export class ActualizacionActivoComponent implements OnInit {
+  //qr
+  public myAngularxQrCode: string = "";
+  public qrCodeDownloadLink: SafeUrl = "";
   selectedCountry?: number;
   selectedCountryText?: string;
   selectedDepartment?: number;
@@ -237,7 +241,7 @@ export class ActualizacionActivoComponent implements OnInit {
               this.mostrarMensajeRegistroExito();
               setTimeout(() => {
               this.gethistorial();
-              }, 2000);
+              }, 1000);
             },
             error => {
               // Manejar el error aquí
@@ -247,7 +251,9 @@ export class ActualizacionActivoComponent implements OnInit {
             )
           }, 2000);
   }
-  constructor(private router: Router, public fb: FormBuilder,public historialService: HistorialActivoService, public marcasService: MarcasService, public activoService: ActivoService, public custodioService: CustodioService, public grupoService: GrupoActivoService, private paisService: PaisService,private departamentoService: DepartamentoService, private provinciaSerivce: ProvinciaService, private sucursalService: SucursalService, private bloqueService: BloqueService, private aulaService: AulaService) {}
+  constructor(private router: Router, public fb: FormBuilder,public historialService: HistorialActivoService, public marcasService: MarcasService, public activoService: ActivoService, public custodioService: CustodioService, public grupoService: GrupoActivoService, private paisService: PaisService,private departamentoService: DepartamentoService, private provinciaSerivce: ProvinciaService, private sucursalService: SucursalService, private bloqueService: BloqueService, private aulaService: AulaService) {
+    this.myAngularxQrCode = 'QR vacio, no seleccionaste un activo';
+  }
   ngOnInit(): void {
     this.activoForm = this.fb.group({
       id_activo : ['', Validators.required],
@@ -630,7 +636,9 @@ export class ActualizacionActivoComponent implements OnInit {
           }
         }
       }
-
+      setTimeout(() => {
+      this.myAngularxQrCode = "Nombre del activo: "+this.activoSeleccionado.activo_nombre.toString()+" Id activo: "+this.activoSeleccionado.id_activo.toString()+" Custodio: "+this.auxCustodio+" Direccion: "+this.auxDireccion;
+      }, 2200);
   }
   estadosActivos: any[] = [
     { id: 1, nombre: 'Nuevo 6/6' },
@@ -651,6 +659,10 @@ export class ActualizacionActivoComponent implements OnInit {
 
   toggleBadgeVisibility() {
     this.hidden = !this.hidden;
+  }
+
+  onChangeURL(url: SafeUrl) {
+    this.qrCodeDownloadLink = url;
   }
 
 }

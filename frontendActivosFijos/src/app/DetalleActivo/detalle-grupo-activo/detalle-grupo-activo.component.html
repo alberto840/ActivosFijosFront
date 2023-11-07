@@ -1,1 +1,205 @@
-<p>detalle-grupo-activo works!</p>
+<div class="container">
+    <h1>Actualizar activos individuales</h1>
+    <!--  -->
+    <div class="container">
+        <h1>Buscar Activos</h1>
+        <input type="text" class="form-control" [(ngModel)]="filtroBusqueda" placeholder="Buscar grupos" (input)="filtrarActivos()">
+      
+        <ul class="list-group mt-3" *ngIf="gruposFiltrados.length > 0">
+          <li class="list-group-item" *ngFor="let grupo of gruposFiltrados">
+            {{ grupo.grupo_nombre }}
+            <button class="btn btn-primary" (click)="seleccionarActivo(grupo)">Seleccionar</button>
+          </li>
+        </ul>
+    </div>
+      
+    <!--  -->
+      
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-4">
+                <mat-card>
+                    <div class="form-container">
+                        <mat-card-header>
+                            <mat-card-title>Datos de Activo</mat-card-title>
+                                <!-- <mat-card-content>
+                                    <p>17-05-2023</p>
+                                </mat-card-content>
+                                <mat-card-subtitle>(Ultima actualización)</mat-card-subtitle> -->
+                        </mat-card-header>
+                    </div>
+                    <div class="container">
+                        <mat-card-title>ID:</mat-card-title>
+                        <mat-card-content>
+                            <p>{{ grupoSeleccionado.id_grupo }}</p>
+                        </mat-card-content>
+                    
+                        <mat-card-title>Nombre grupo:</mat-card-title>
+                        <mat-card-content>
+                            <p>{{ grupoSeleccionado.grupo_nombre }}</p>
+                        </mat-card-content>
+        
+                        <mat-card-title>Cantidad de items:</mat-card-title>
+                        <mat-card-content><p>{{ numeroActivos }}</p></mat-card-content>
+                                              
+                        <div class="conte-boton">
+                          <mat-card-title>
+                              Codigo QR :  
+                          </mat-card-title>
+                          <qrcode (qrCodeURL)="onChangeURL($event)" [qrdata]="myAngularxQrCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+                          <a [href]="qrCodeDownloadLink" download="qrcode">Descargar QR</a>
+                          </div>
+                                     
+                    </div>
+                </mat-card>
+            </div>
+            <div class="col-8">
+                <mat-card>
+                    <!-- <div class="row">
+                        <div class="col">
+                            <div class="form-container">
+                                <mat-card-actions>
+                                    <mat-slide-toggle>Enviar a mantenimiento!</mat-slide-toggle>
+                                </mat-card-actions>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <mat-card-actions>
+                                    
+                                <button mat-raised-button color="primary"
+                                    matBadge="!" matBadgePosition="before" matBadgeColor="warn">
+                                  Baja
+                                </button>
+                            </mat-card-actions>
+                        </div>
+                    </div> -->
+                    <mat-divider></mat-divider>
+                    <!-- la direccion-->
+                <form [formGroup]="activoForm" (ngSubmit)="registrarActivo()">
+                    <div class="row row-cols-3">
+                        <div class="col">
+                            <mat-form-field>
+                                <mat-label>Custodio</mat-label>
+                                <mat-select id="custodio_id_custodio" formControlName="custodio_id_custodio">
+                                  <mat-option *ngFor="let custodio of custodioList" [value]="custodio.id_custodio">{{ custodio.custodio_nombre }}</mat-option>
+                                </mat-select>
+  
+                            </mat-form-field>                            
+                        </div>
+                        <div class="col">
+                            <mat-form-field>
+                                <mat-label>Estado de uso</mat-label>
+                                <mat-select id="activo_estado_uso" formControlName="activo_estado_uso">
+                                    <mat-option *ngFor="let estado of estadosActivos" [value]="estado.nombre">{{ estado.nombre }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <mat-form-field class="example-container">
+                                <mat-label>Grupo</mat-label>
+                                <mat-select id="grupo_id_grupo" formControlName="grupo_id_grupo">
+                                    <mat-option [value]="activoSeleccionado.grupo_id_grupo">Conservar grupo</mat-option>
+                                    <mat-option *ngFor="let grupo of grupoList" [value]="grupo.id_grupo">{{ grupo.grupo_nombre }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="form-container">
+                        <h4>Dirección</h4>
+                        <div class="row row-cols-3 p-1">
+                            <div class="mb-3">
+                                <label for="pais">País</label>
+                                <select class="form-select" id="id" formControlName="pais_id_pais" [(ngModel)]="selectedCountry" (change)="onCountryChange()">
+                                <option *ngFor="let pais of paises" [value]="pais.id">{{ pais.pais_nombre }}</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="departamento">Departamento/Estado</label>
+                                <select class="form-select" id="departamento" formControlName="departamento_id_departamento" [(ngModel)]="selectedDepartment" (change)="onDepartmentChange()">
+                                <option *ngFor="let departamento of departamentosAux1" [value]="departamento.id_departamento">{{ departamento.departamento_nombre }}</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="municipio">Municipio/Ciudad</label>
+                                <select class="form-select" id="municipio" formControlName="provincia_id_provincia" [(ngModel)]="selectedProvincia" (change)="onProvinciaChange()">
+                                <option *ngFor="let provincia of provinciasAux1" [value]="provincia.id_provincia">{{ provincia.provincia_nombre }}</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="departamento-area">Sucursal</label>
+                                <select class="form-select" id="departamento-area" formControlName="direccion_id_direccion" [(ngModel)]="selectedSucursal" (change)="onSucursalChange()">
+                                <option *ngFor="let sucursal of sucursalesAux1" [value]="sucursal.id_direccion">{{ sucursal.direccion_zona +" - "+ sucursal.direccion_calle }}</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="bloque">Bloque/Edificio</label>
+                                <select class="form-select" id="bloque" formControlName="bloque_id_bloque" [(ngModel)]="selectedBloque" (change)="onBloqueChange()">
+                                <option *ngFor="let bloque of bloquesAux1" [value]="bloque.id_bloque">{{ bloque.bloque_nombre }}</option>
+                                </select>
+                            </div>          
+                            <div class="mb-3">
+                                <label for="aula">Aula/Oficina</label>
+                                <select class="form-select" id="aula" formControlName="aula_id_aula" [(ngModel)]="selectedAula">
+                                <option *ngFor="let aula of aulasAux1" [value]="aula.id_aula">{{ aula.aula_nombre }}</option>
+                                </select>
+                            </div>                        
+                        </div>
+                    </div>
+                    <div class="alert" *ngIf="mostrarAlerta">
+                        Se registro correctamente el activo
+                      </div>
+                      <div class="alertE" *ngIf="mostrarAlertaError">
+                        No se pudo registrar el activo
+                      </div>
+                    <div class="container">
+                        <button type="submit" mat-raised-button color="primary">Actualizar</button>
+                    </div>
+                </form>
+                    <div class="py-5">
+                        <h3>Activos del grupo</h3>
+                        <mat-table [dataSource]="activosGrupo" class="mat-elevation-z8">
+                            <!-- Fecha Column -->
+                            <ng-container matColumnDef="id activo">
+                              <mat-header-cell *matHeaderCellDef> Id activo </mat-header-cell>
+                              <mat-cell *matCellDef="let element"> {{element.id_activo}} </mat-cell>
+                            </ng-container>
+                            <!-- Fecha Column -->
+                            <ng-container matColumnDef="nombre">
+                              <mat-header-cell *matHeaderCellDef> Nombre activo </mat-header-cell>
+                              <mat-cell *matCellDef="let element"> {{element.activo_nombre}} </mat-cell>
+                            </ng-container>
+                          
+                            <!-- Custodio Column -->
+                            <ng-container matColumnDef="custodio">
+                              <mat-header-cell *matHeaderCellDef> Custodio </mat-header-cell>
+                              <mat-cell *matCellDef="let element; let i = index"> {{custodio2aux[i]}} </mat-cell>
+                            </ng-container>
+                          
+                            <!-- Direccion Column -->
+                            <ng-container matColumnDef="direccion">
+                              <mat-header-cell *matHeaderCellDef> Dirección </mat-header-cell>
+                              <mat-cell *matCellDef="let element; let i = index"> {{ pais2aux[i]+', '+departamento2aux[i]+', '+provincia2aux[i]+', '+sucursal2aux[i]+', '+bloque2aux[i]+', '+aula2aux }} </mat-cell>
+                            </ng-container>
+                          
+                            <!-- Valor Column -->
+                            <ng-container matColumnDef="valor">
+                              <mat-header-cell *matHeaderCellDef> Valor Total </mat-header-cell>
+                              <mat-cell *matCellDef="let element"> {{element.activo_valor_actual}} </mat-cell>
+                            </ng-container>
+  
+                            <!-- Valor Column -->
+                            <ng-container matColumnDef="estado de uso">
+                              <mat-header-cell *matHeaderCellDef> Estado de uso </mat-header-cell>
+                              <mat-cell *matCellDef="let element"> {{element.activo_estado_uso}} </mat-cell>
+                            </ng-container>
+                          
+                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                        </mat-table>
+                          
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+  </div>

@@ -32,9 +32,13 @@ import { MenuIzquierdoLectorComponent } from './Utilitarios/menu-izquierdo-lecto
 import { LectorDetalleActivoComponent } from './DetalleActivo/lector-detalle-activo/lector-detalle-activo.component';
 import { DatosAdquisicionComponent } from './RegistroActivo/datos-adquisicion/datos-adquisicion.component';
 import { FilterPipe } from './filterpipe/filter.pipe';
+import { PdfReporteService } from './Services/PdfReport/pdf-reporte.service';
+import { QRCodeModule } from 'angularx-qrcode';
+import { TablaEditorComponent } from './tabla-editor/tabla-editor.component';
 
 @NgModule({
   declarations: [
+    TablaEditorComponent,
     InicioUserActualizadorComponent,
     MenuIzquierdoEditorComponent,
     MenuIzquierdoLectorComponent,
@@ -69,7 +73,8 @@ import { FilterPipe } from './filterpipe/filter.pipe';
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    QRCodeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

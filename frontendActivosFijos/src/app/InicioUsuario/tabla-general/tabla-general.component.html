@@ -16,18 +16,12 @@
       <label id="fechaActualBackend">2023-09-26</label>
     </div>
     <div class="col-md-3">
-      <label for="mostrarSolo">Mostrar Solo:</label>
-      <select id="mostrarSolo" class="form-select">
-        <option value="todo">Todo</option>
-        <option value="activo1">Activo 1</option>
-        <option value="activo2">Activo 2</option>
-        <!-- Agrega más opciones según sea necesario -->
-      </select>
-      <br>
-      <input type="text" class="form-control" placeholder="Buscar">
-      <button class="btn btn-primary mt-2">
-        <i class="bi bi-search"></i> Buscar
-      </button>
+        <!--  -->
+        <div class="container">
+          <h5>Buscar Activos</h5>
+          <input type="text" class="form-control" [(ngModel)]="filtroBusqueda" placeholder="Buscar actividad o users" (input)="filtrarActivos()">
+        </div>        
+        <!--  -->
     </div>
     <div class="">
       <table class="table">
@@ -45,13 +39,13 @@
         </thead>
         <tbody>
         <!-- Agrega filas con datos dinámicos desde tu backend -->
-        <tr *ngFor="let element of activosList; let i = index">
+        <tr *ngFor="let element of activosFiltrados; let i = index">
           <td>{{grupoAux1[i]}}</td>
           <td>{{element.id_activo}}</td>
           <td>{{element.activo_nombre}}</td>
           <td>{{marcaAux1[i]}}</td>          
           <td>{{element.activo_valor_actual}}</td>
-          <td>{{element.activo_categoria}}</td>
+          <td>{{ categoriaAux1[i] }}</td>
           <td>{{ custodioAux1[i] }}</td>
           <td>{{ paisesAux1[1] + ", " + departamentosAux1[1] + ", " + provinciasAux1[i] + ", " + sucursalesAux1[i] + ", " + bloquesAux1[i] + ", " + aulasAux1[i]}}</td>
           <!-- <td><a href="#">Datos Registro Inicial</a></td> -->
@@ -59,7 +53,7 @@
         <!-- Repite esta estructura para cada fila de datos -->
         </tbody>
       </table>
-      <button class="btn btn-primary float-end">
+      <button (click)="generarInforme()" class="btn btn-primary float-end">
         Reporte PDF
       </button>
     </div>

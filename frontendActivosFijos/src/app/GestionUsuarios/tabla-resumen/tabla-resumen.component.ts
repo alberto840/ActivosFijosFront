@@ -26,6 +26,9 @@ export class TablaResumenComponent implements OnInit {
         console.error('Error al mostrar el registro', error);
       }
     )
+    setTimeout(() => {    
+    this.activosFiltrados = this.registrosActi;
+    }, 1000);
   }
 
   /*
@@ -33,5 +36,13 @@ export class TablaResumenComponent implements OnInit {
     console.log("holasxsadsa");
     this.router.navigate(['homeEnterprise']);
   }*/
+  filtroBusqueda: string = '';
+  activosFiltrados: any[] = this.registrosActi;
+  filtrarActivos() {
+    this.activosFiltrados = this.registrosActi.filter((custodio: any) =>
+    custodio.usuario_nombre.toLowerCase().includes(this.filtroBusqueda.toLowerCase()) ||
+    custodio.id_actividadesUsers.toString().includes(this.filtroBusqueda)
+    );
+  }
 
 }
