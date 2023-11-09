@@ -1,0 +1,4 @@
+.b-content {
+    max-height: 600px; /* Ajusta esto según tus necesidades */
+    overflow-y: auto;
+  }

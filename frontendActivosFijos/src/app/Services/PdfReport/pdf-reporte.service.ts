@@ -8,13 +8,13 @@ import { Activo } from 'src/app/Models/activo';
   providedIn: 'root'
 })
 export class PdfReporteService {
-  generatePdf(grupoList: any[],fechaList: any[],activoList: Activo[], marcaList: any[], custodioList: any[], categoriaList: any[], paisList: any[], departmanetoList: any[], municipioList: any[], sucursalList: any[], bloqueList: any[], aulaList: any[], mesFaltante: any[], mesTranscurrido: any[]) {
+  generatePdf(grupoList: any[],fechaList: any[],activoList: Activo[], marcaList: any[], custodioList: any[], categoriaList: any[], paisList: any[], departmanetoList: any[], municipioList: any[], sucursalList: any[], bloqueList: any[], aulaList: any[], mesFaltante: any[], mesTranscurrido: any[], auxValorActual: any[], auxValorInicial: any[], mesTotal: any[]) {
     const doc = new jsPDF('l', 'mm', [297, 210]);
-    doc.text('Informe de Activos', 10, 10);
+    doc.text('Informe de Activos generado: '+new Date().toLocaleString(), 10, 10);
     var fecha = new Date().toLocaleString();
     //doc.text('/n Fecha de generacion: '+fecha, 10, 10);
 
-    const columns = ['Grupo','ID', 'Fecha','Nombre','Categoria' , 'Estado', 'Custodio', 'Ubicacion', 'Marca', 'Valor inicial','Valor actual','Meses transcurridos','Meses faltantes'];
+    const columns = ['Grupo','ID', 'Fecha','Nombre','Categoria' , 'Estado', 'Custodio', 'Ubicacion', 'Marca', 'Valor inicial','Valor actual','Meses transcurridos','Meses faltantes','Tiempo de vida total'];
     const data = activoList.map((activo, index) => [
       grupoList[index],
       activo.id_activo,
@@ -25,10 +25,11 @@ export class PdfReporteService {
       custodioList[index],
       paisList[index]+", "+departmanetoList[index]+", "+municipioList[index]+", "+sucursalList[index]+", "+bloqueList[index]+", "+aulaList[index],
       marcaList[index],
-      activo.activo_valor_inicial,      
-      activo.activo_valor_actual,
+      auxValorInicial[index],      
+      auxValorActual[index],
       mesTranscurrido[index],
       mesFaltante[index],
+      mesTotal[index]*12,
       
     ]);
 

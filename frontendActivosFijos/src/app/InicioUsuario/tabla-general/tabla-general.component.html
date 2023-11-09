@@ -24,35 +24,38 @@
         <!--  -->
     </div>
     <div class="">
-      <table class="table">
-        <thead>
-        <tr>
-          <th>Nombre grupo</th>
-          <th>ID Activo individual</th>
-          <th>Nombre de Activo individual</th>
-          <th>Marca</th>          
-          <th>Valor Actual</th>
-          <th>Categoría</th>
-          <th>Custodio</th>
-          <th>Dirección de Activo</th>
-        </tr>
-        </thead>
-        <tbody>
-        <!-- Agrega filas con datos dinámicos desde tu backend -->
-        <tr *ngFor="let element of activosFiltrados; let i = index">
-          <td>{{grupoAux1[i]}}</td>
-          <td>{{element.id_activo}}</td>
-          <td>{{element.activo_nombre}}</td>
-          <td>{{marcaAux1[i]}}</td>          
-          <td>{{element.activo_valor_actual}}</td>
-          <td>{{ categoriaAux1[i] }}</td>
-          <td>{{ custodioAux1[i] }}</td>
-          <td>{{ paisesAux1[1] + ", " + departamentosAux1[1] + ", " + provinciasAux1[i] + ", " + sucursalesAux1[i] + ", " + bloquesAux1[i] + ", " + aulasAux1[i]}}</td>
-          <!-- <td><a href="#">Datos Registro Inicial</a></td> -->
-        </tr>
-        <!-- Repite esta estructura para cada fila de datos -->
-        </tbody>
-      </table>
+      <div class="b-content py-4">
+        <table class="table">
+          <thead>
+          <tr>
+            <th>Nombre grupo</th>
+            <th>ID Activo individual</th>
+            <th>Nombre de Activo individual</th>
+            <th>Marca</th>          
+            <th>Valor Actual</th>
+            <th>Categoría</th>
+            <th>Custodio</th>
+            <th>Dirección de Activo</th>
+          </tr>
+          </thead>
+          <tbody>
+          <!-- Agrega filas con datos dinámicos desde tu backend -->
+          <tr *ngFor="let element of activosFiltrados; let i = index">
+            <td>{{grupoAux1[i]}}</td>
+            <td>{{element.id_activo}}</td>
+            <td>{{element.activo_nombre}}</td>
+            <td>{{marcaAux1[i]}}</td>          
+            <td>{{element.activo_valor_actual}}</td>
+            <td>{{ categoriaAux1[i] }}</td>
+            <td>{{ custodioAux1[i] }}</td>
+            <td>{{ paisesAux1[1] + ", " + departamentosAux1[1] + ", " + provinciasAux1[i] + ", " + sucursalesAux1[i] + ", " + bloquesAux1[i] + ", " + aulasAux1[i]}}</td>
+            <!-- <td><a href="#">Datos Registro Inicial</a></td> -->
+          </tr>
+          <!-- Repite esta estructura para cada fila de datos -->
+          </tbody>
+        </table>
+      </div>
+      
       <button (click)="generarInforme()" class="btn btn-primary float-end">
         Reporte PDF
       </button>

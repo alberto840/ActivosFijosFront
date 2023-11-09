@@ -5,7 +5,7 @@
       <h1>Buscar Activos</h1>
       <input type="text" class="form-control" [(ngModel)]="filtroBusqueda" placeholder="Buscar grupos" (input)="filtrarActivos()">
     
-      <ul class="list-group mt-3" *ngIf="gruposFiltrados.length > 0">
+      <ul class="list-group mt-3 b-content" *ngIf="gruposFiltrados.length > 0">
         <li class="list-group-item" *ngFor="let grupo of gruposFiltrados">
           {{ grupo.grupo_nombre }}
           <button class="btn btn-primary" (click)="seleccionarActivo(grupo)">Seleccionar</button>

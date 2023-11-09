@@ -22,6 +22,7 @@ import { PaisService } from 'src/app/Services/UbicacionServices/Pais/pais.servic
 import { ProvinciaService } from 'src/app/Services/UbicacionServices/Provincia/provincia.service';
 import { SucursalService } from 'src/app/Services/UbicacionServices/Sucursal/sucursal.service';
 import { UsuarioService } from 'src/app/Services/Usuarios/usuario.service';
+import { XlsReporteService } from '../Services/ExcelReport/xls-reporte.service';
 
 export interface PeriodicElement {
   nombre: string;
@@ -109,13 +110,19 @@ export class TablaEditorComponent implements OnInit {
   fechas!: string[];
   mesTrascurrido!: number[];
   mesFaltante!: number[];
+  auxValorActual!: string[];
+  auxValorInicial!: string[];
+  auxMestotal!: number[];
 
   custodio2aux!: string[];
-  constructor(private router: Router, private fb: FormBuilder,private pdfService: PdfReporteService, private marcasService: MarcasService, private activoService: ActivoService, private custodioService: CustodioService, private grupoService: GrupoActivoService, private paisService: PaisService,private departamentoService: DepartamentoService, private provinciaSerivce: ProvinciaService, private sucursalService: SucursalService, private bloqueService: BloqueService, private aulaService: AulaService) {}
+  constructor(private router: Router, private fb: FormBuilder,private xlsService: XlsReporteService,private pdfService: PdfReporteService, private marcasService: MarcasService, private activoService: ActivoService, private custodioService: CustodioService, private grupoService: GrupoActivoService, private paisService: PaisService,private departamentoService: DepartamentoService, private provinciaSerivce: ProvinciaService, private sucursalService: SucursalService, private bloqueService: BloqueService, private aulaService: AulaService) {}
   ngOnInit(): void {
     
     this.getactivos();
     this.getmarca();
+    this.auxMestotal = [];
+    this.auxValorActual = [];
+    this.auxValorInicial = [];
     this.mesFaltante = [];
     this.mesTrascurrido = [];
     this.grupoAux1 = [];
@@ -151,6 +158,8 @@ export class TablaEditorComponent implements OnInit {
       this.asignaraula();
       this.asignarcategoria();
       this.asignarfechas();
+      this.guardarValoresEnString();
+      this.asignarTimepoVida();
       this.activosFiltrados = this.activosList;
     }, 2000);
     
@@ -493,9 +502,20 @@ export class TablaEditorComponent implements OnInit {
         }
     }, 3000);
     }
+    asignarTimepoVida(){
+      this.auxMestotal = [];
+      for (let i = 0; i < this.activosList.length; i++) {
+        for (let j = 0; j < this.categoriaList.length; j++) {
+          if (this.activosList[i].activo_categoria == this.categoriaList[j].id) {
+            this.auxMestotal[i] = this.categoriaList[j].tiempoVida;
+          }
+        }
+      }
+    }
 
     generarInforme() {
-      this.pdfService.generatePdf(this.grupoAux1,this.fechas,this.activosList, this.marcaAux1, this.custodioAux1, this.categoriaAux1, this.paisesAux1, this.departamentosAux1, this.provinciasAux1, this.sucursalesAux1, this.bloquesAux1, this.aulasAux1, this.mesFaltante, this.mesTrascurrido);
+      this.pdfService.generatePdf(this.grupoAux1,this.fechas,this.activosList, this.marcaAux1, this.custodioAux1, this.categoriaAux1, this.paisesAux1, this.departamentosAux1, this.provinciasAux1, this.sucursalesAux1, this.bloquesAux1, this.aulasAux1, this.mesFaltante, this.mesTrascurrido, this.auxValorActual, this.auxValorInicial, this.auxMestotal);
+      this.xlsService.generarInforme(this.grupoAux1,this.fechas,this.activosList, this.marcaAux1, this.custodioAux1, this.categoriaAux1, this.paisesAux1, this.departamentosAux1, this.provinciasAux1, this.sucursalesAux1, this.bloquesAux1, this.aulasAux1, this.mesFaltante, this.mesTrascurrido, this.auxValorActual, this.auxValorInicial, this.auxMestotal);
     }
    
   displayedColumns: string[] = ['nombre grupo','id activo','Nombre activo', 'marca', 'valor actual', 'categoria', 'custodio', 'direccion', 'eliminar'];
@@ -583,6 +603,16 @@ export class TablaEditorComponent implements OnInit {
         )
       }
     }, 2000);
+  }
+
+  guardarValoresEnString(){
+    this.auxValorActual = [];
+    this.auxValorInicial = [];
+    this.auxMestotal = [];
+    for (let i = 0; i < this.activosList.length; i++) {
+      this.auxValorInicial[i] = this.activosList[i].activo_valor_inicial.toLocaleString('en-US', { maximumFractionDigits: 2 });
+      this.auxValorActual[i] = this.activosList[i].activo_valor_actual.toLocaleString('en-US', { maximumFractionDigits: 2 });
+    }
   }
 
 }

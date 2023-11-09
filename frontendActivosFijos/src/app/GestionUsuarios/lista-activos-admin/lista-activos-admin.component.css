@@ -17,3 +17,7 @@ table {
   font-size: 14px;
   width: 100%;
 }
+.b-content {
+  max-height: 600px; /* Ajusta esto según tus necesidades */
+  overflow-y: auto;
+}
