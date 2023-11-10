@@ -18,8 +18,8 @@ export class XlsReporteService {
     this.data.forEach(activo => {
       const fila = [
         grupoList[activoList.indexOf(activo)], activo.id_activo, fechaList[activoList.indexOf(activo)], activo.activo_nombre, categoriaList[activoList.indexOf(activo)], activo.activo_estado,
-        custodioList[activoList.indexOf(activo)], paisList[activoList.indexOf(activo)], marcaList[activoList.indexOf(activo)], auxValorInicial[activoList.indexOf(activo)],
-        auxValorActual[activoList.indexOf(activo)], mesTranscurrido[activoList.indexOf(activo)], mesFaltante[activoList.indexOf(activo)], mesTotal[activoList.indexOf(activo)]
+        custodioList[activoList.indexOf(activo)], paisList[activoList.indexOf(activo)]+", "+departmanetoList[activoList.indexOf(activo)]+", "+municipioList[activoList.indexOf(activo)]+", "+sucursalList[activoList.indexOf(activo)]+", "+bloqueList[activoList.indexOf(activo)]+", "+aulaList[activoList.indexOf(activo)], marcaList[activoList.indexOf(activo)], auxValorInicial[activoList.indexOf(activo)],
+        auxValorActual[activoList.indexOf(activo)], mesTranscurrido[activoList.indexOf(activo)], mesFaltante[activoList.indexOf(activo)], 12*(mesTotal[activoList.indexOf(activo)])
       ];
       informe.push(fila);
     });
