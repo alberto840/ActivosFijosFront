@@ -71,8 +71,8 @@
   
           <!-- Weight Column -->
           <ng-container matColumnDef="valor actual">
-            <th mat-header-cell *matHeaderCellDef> ID Activo </th>
-            <td mat-cell *matCellDef="let element"> {{element.activo_valor_actual}} </td>
+            <th mat-header-cell *matHeaderCellDef> Valor actual </th>
+            <td mat-cell *matCellDef="let element; let i = index"> {{auxValorActual[i]}} </td>
           </ng-container>
   
           <!-- Symbol Column -->
