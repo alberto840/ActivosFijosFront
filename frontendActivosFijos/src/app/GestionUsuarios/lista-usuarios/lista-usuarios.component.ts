@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {MatTableDataSource} from '@angular/material/table';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/Services/Usuarios/usuario.service';
@@ -23,7 +23,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./lista-usuarios.component.css']
 })
 export class ListaUsuariosComponent implements OnInit{
-
+  usersForm!: FormGroup;
   checked = false;
   indeterminate = false;
   labelPosition: 'before' | 'after' = 'after';
@@ -38,8 +38,16 @@ export class ListaUsuariosComponent implements OnInit{
   }
   disableSelect = new FormControl(false);
   registrosUsers!: any;
-  constructor(private router: Router, public fb: FormBuilder, public usuarioService: UsuarioService) {}
+  constructor(private usersService: UsuarioService,private router: Router, public fb: FormBuilder, public usuarioService: UsuarioService) {}
   ngOnInit(): void {
+    this.usersForm = this.fb.group({
+      usuario_nombre : ['', Validators.required],
+      usuario_pass : ['', Validators.required],
+      usuario_estado : ['', Validators.required],
+      usuario_correo : ['', Validators.required],
+      usuario_telefono : ['', Validators.required],
+      usuario_rol : ['', Validators.required],
+    })
     this.usuarioService.getAllUsuarios().subscribe(
       response => {
         this.registrosUsers = response;
@@ -64,5 +72,50 @@ export class ListaUsuariosComponent implements OnInit{
     user.id_usuario.toString().includes(this.filtroBusqueda)
     );
   }
-
+  registrarUser(){
+    this.usersService.registerNewUsuario(this.usersForm.value).subscribe(
+      response => {
+        // Manejar la respuesta de éxito aquí
+        console.log('Marca user exitosamente', response);
+        this.mostrarMensajeRegistroExito();
+      },
+      error => {
+        // Manejar el error aquí
+        console.error('Error al crear la user', error);
+        this.mostrarMensajeRegistroError();
+      }
+      )
+      setTimeout(() => {
+          this.usersService.getAllUsuarios().subscribe(
+            response => {
+              this.registrosUsers = response;
+      
+              // Manejar la respuesta de éxito aquí
+              console.log('Registros de marcas mostradas', response);
+            },
+            error => {
+              // Manejar el error aquí
+              console.error('Error al mostrar las marcas', error);
+            }
+          )
+        }, 500);
+  }
+  mostrarAlerta = false;
+  mostrarAlertaError = false;
+  mostrarMensajeRegistroExito() {
+    this.mostrarAlerta = true;
+    setTimeout(() => {
+      this.cerrarAlerta();
+    }, 3000);
+  }
+  mostrarMensajeRegistroError() {
+    this.mostrarAlertaError = true;
+    setTimeout(() => {
+      this.cerrarAlerta();
+    }, 3000);
+  }
+  cerrarAlerta() {
+    this.mostrarAlerta = false;
+    this.mostrarAlertaError = false;
+  }
 }

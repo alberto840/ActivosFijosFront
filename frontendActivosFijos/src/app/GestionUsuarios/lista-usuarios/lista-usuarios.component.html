@@ -1,5 +1,40 @@
 <div class="conteiner">
   <h1>Actualizaciones y modificaciones</h1>
+  <div>
+    <form [formGroup]="usersForm" (ngSubmit)="registrarUser()">
+      <div class="col-md-6">
+        <h2>Registro de Usuario Nuevo</h2>
+        <h4>Datos de Adquisición</h4>
+        <div class="form-group">
+          <label for="">Nombre del usuario</label>
+          <input type="text" class="form-control" id="usuario_nombre" formControlName="usuario_nombre" placeholder="Nombre del ususario">
+        </div>
+        <div class="form-group">
+          <label for="">Password del usuario</label>
+          <input type="password" class="form-control" id="usuario_pass" formControlName="usuario_pass" placeholder="Password del usuario">
+        </div>
+        <div class="form-group">
+          <label for="">Correo del ususario</label>
+          <input type="text" class="form-control" id="usuario_correo" formControlName="usuario_correo" placeholder="Correo del ususario">
+        </div>
+        <div class="form-group">
+          <label for="">Telefono del Usuario</label>
+          <input type="text" class="form-control" id="usuario_telefono" formControlName="usuario_telefono" placeholder="Telefono del Usuario">
+        </div>
+        <div class="form-group">
+          <label for="">Rol del usuario</label>
+          <input type="text" class="form-control" id="usuario_rol" formControlName="usuario_rol" placeholder="Rol del usuario">
+        </div>
+        <button type="submit" class="btn btn-primary">Registrar</button>
+        <div class="alert" *ngIf="mostrarAlerta">
+          Se registro correctamente el item
+        </div>
+        <div class="alertE" *ngIf="mostrarAlertaError">
+          No se pudo registrar el item
+        </div>
+      </div>
+      </form>
+  </div>
       <h2>Lista de usuarios</h2>
   <div>
         <!--  -->
@@ -46,22 +81,7 @@
 
   </div>
 
-
-
-    <mat-card class="result">
-<mat-card-content>
-  <section class="example-section">
-    <mat-slide-toggle class="example-margin"
-        [disabled]="disabled">
-      Editar
-    </mat-slide-toggle>
-  </section>
-</mat-card-content>
-<button mat-fab extended color="accent">
-  <mat-icon ></mat-icon>
-  Actualizar
-</button>
-</mat-card>
+  
 
 
 

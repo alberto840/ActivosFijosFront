@@ -1,10 +1,10 @@
 <div class="container">
-  <h1>Actualizar activos individuales</h1>
+  <h1>Actualizar grupo activos</h1>
   <!--  -->
   <div class="container">
       <h1>Buscar Activos</h1>
       <input type="text" class="form-control" [(ngModel)]="filtroBusqueda" placeholder="Buscar grupos" (input)="filtrarActivos()">
-    
+
       <ul class="list-group mt-3 b-content" *ngIf="gruposFiltrados.length > 0">
         <li class="list-group-item" *ngFor="let grupo of gruposFiltrados">
           {{ grupo.grupo_nombre }}
@@ -12,9 +12,9 @@
         </li>
       </ul>
   </div>
-    
+
   <!--  -->
-    
+
   <div class="container text-center">
       <div class="row">
           <div class="col-4">
@@ -33,23 +33,23 @@
                       <mat-card-content>
                           <p>{{ grupoSeleccionado.id_grupo }}</p>
                       </mat-card-content>
-                  
+
                       <mat-card-title>Nombre grupo:</mat-card-title>
                       <mat-card-content>
                           <p>{{ grupoSeleccionado.grupo_nombre }}</p>
                       </mat-card-content>
-      
+
                       <mat-card-title>Cantidad de items:</mat-card-title>
                       <mat-card-content><p>{{ numeroActivos }}</p></mat-card-content>
-                                            
+
                       <div class="conte-boton">
                         <mat-card-title>
-                            Codigo QR :  
+                            Codigo QR :
                         </mat-card-title>
                         <qrcode (qrCodeURL)="onChangeURL($event)" [qrdata]="myAngularxQrCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
                         <a [href]="qrCodeDownloadLink" download="qrcode">Descargar QR</a>
                         </div>
-                                   
+
                   </div>
               </mat-card>
           </div>
@@ -65,7 +65,7 @@
                       </div>
                       <div class="col">
                           <mat-card-actions>
-                                  
+
                               <button mat-raised-button color="primary"
                                   matBadge="!" matBadgePosition="before" matBadgeColor="warn">
                                 Baja
@@ -84,7 +84,7 @@
                                 <mat-option *ngFor="let custodio of custodioList" [value]="custodio.id_custodio">{{ custodio.custodio_nombre }}</mat-option>
                               </mat-select>
 
-                          </mat-form-field>                            
+                          </mat-form-field>
                       </div>
                       <div class="col">
                           <mat-form-field>
@@ -136,13 +136,13 @@
                               <select class="form-select" id="bloque" formControlName="bloque_id_bloque" [(ngModel)]="selectedBloque" (change)="onBloqueChange()">
                               <option *ngFor="let bloque of bloquesAux1" [value]="bloque.id_bloque">{{ bloque.bloque_nombre }}</option>
                               </select>
-                          </div>          
+                          </div>
                           <div class="mb-3">
                               <label for="aula">Aula/Oficina</label>
                               <select class="form-select" id="aula" formControlName="aula_id_aula" [(ngModel)]="selectedAula">
                               <option *ngFor="let aula of aulasAux1" [value]="aula.id_aula">{{ aula.aula_nombre }}</option>
                               </select>
-                          </div>                        
+                          </div>
                       </div>
                   </div>
                   <div class="alert" *ngIf="mostrarAlerta">
@@ -168,19 +168,19 @@
                             <mat-header-cell *matHeaderCellDef> Nombre activo </mat-header-cell>
                             <mat-cell *matCellDef="let element"> {{element.activo_nombre}} </mat-cell>
                           </ng-container>
-                        
+
                           <!-- Custodio Column -->
                           <ng-container matColumnDef="custodio">
                             <mat-header-cell *matHeaderCellDef> Custodio </mat-header-cell>
                             <mat-cell *matCellDef="let element; let i = index"> {{custodio2aux[i]}} </mat-cell>
                           </ng-container>
-                        
+
                           <!-- Direccion Column -->
                           <ng-container matColumnDef="direccion">
                             <mat-header-cell *matHeaderCellDef> Dirección </mat-header-cell>
                             <mat-cell *matCellDef="let element; let i = index"> {{ pais2aux[i]+', '+departamento2aux[i]+', '+provincia2aux[i]+', '+sucursal2aux[i]+', '+bloque2aux[i]+', '+aula2aux }} </mat-cell>
                           </ng-container>
-                        
+
                           <!-- Valor Column -->
                           <ng-container matColumnDef="valor">
                             <mat-header-cell *matHeaderCellDef> Valor Total </mat-header-cell>
@@ -192,11 +192,11 @@
                             <mat-header-cell *matHeaderCellDef> Estado de uso </mat-header-cell>
                             <mat-cell *matCellDef="let element"> {{element.activo_estado_uso}} </mat-cell>
                           </ng-container>
-                        
+
                           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
                       </mat-table>
-                        
+
                   </div>
               </mat-card>
           </div>
