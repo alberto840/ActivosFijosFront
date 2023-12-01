@@ -59,7 +59,7 @@ export class VentanaLoginComponent implements OnInit {
         console.log("existe cuenta editor");
         this.router.navigate(['editor'], { queryParams: { string: this.username } });
       }
-      if(this.rol=='Admin'){
+      if(this.rol=='Administrador'){
         console.log("existe cuenta admin");
         this.router.navigate(['admin'], { queryParams: { string: this.username } });
       }
